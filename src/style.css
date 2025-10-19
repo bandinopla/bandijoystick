@@ -177,7 +177,7 @@ img {
 	margin-top: 50px;
 }
 
-.video-ad { 
+.video { 
 	z-index: 1; 
 	display: grid;
 	align-items: center;
@@ -185,7 +185,7 @@ img {
 	width: 30vw;
 	flex-grow: 0;
 }
-.video-ad video {
+.video video {
 	width: 100%;
 	max-width: 30vw;
 	border: 5px solid #151419;
