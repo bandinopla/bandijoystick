@@ -96,8 +96,8 @@ function Website()
 							<Route default component={HomePage} />
 						</Router>
 					</div>
-					<div className={"video-ad"}>
-						<video src="/ad-final.mp4" className={"bsha rounded"} controls></video>
+					<div className={"video"}>
+						<video src="/final.mp4" className={"bsha rounded"} controls></video>
 					</div>
 				</div>
 }
