@@ -1,3 +1,5 @@
+[![npm version](https://img.shields.io/npm/v/package-name.svg)](https://www.npmjs.com/package/bandijoystick)
+
 # ✨💻🐶📱✨  BandiJoystick.js
 **Turn a phone into a remote controller!**
 No apps. No installations. Just scan & play!
