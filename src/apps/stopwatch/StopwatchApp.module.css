@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@200..800&display=swap');
+
+.root {
+	background-color: black;
+	color:white;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	justify-items: center;
+	flex-direction: column;
+}
+
+.mainDigits, .subDigits {
+	font-size: 10vw;
+	line-height: 10vw;
+	font-family: "Oxanium", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+
+.subDigits {
+	font-size: 4vw;
+	line-height: 4vw;
+}
+
+.zeros {
+	opacity: .3;
+}
+.ms {
+	font-size: .5em;
+}
+
+.lapsBars {
+	display: flex;
+	flex-direction: row;
+	height: 20vh;
+	gap: 3px;
+	align-items: end;
+	width: 600px;
+	justify-content: center;
+	margin-bottom: 5vh;
+}
+.lapsBars > div {
+	background-color: rgb(53, 53, 53);
+	max-width: 2vw;
+	flex-grow: 1;
+}
+.lapsBars > div:has(+ span) {
+	background-color: white;
+	opacity: .5;
+}
+.lapCount {
+	font-size: 8vw;
+	line-height: 6vw;
+	color: rgba(255, 255, 255, .5);
+}

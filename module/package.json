@@ -1,0 +1,91 @@
+{
+  "name": "bandijoystick",
+  "description": "A Javasript library to turn a phone into a remote control",
+  "private": false,
+  "version": "0.1.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bandinopla/bandijoystick.git" 
+  },
+  "homepage": "https://bandijoystickjs.web.app/",
+  "author": {
+    "name": "Bandinopla", 
+    "url": "https://bandinopla.github.io/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bandinopla/bandijoystick/issues"
+  },
+  "scripts": {
+	"build": "tsc && vite build"
+  },
+  "files": [
+    "dist",
+    "LICENSE",
+    "package.json",
+    "README.md"
+  ],
+  
+  "main": "./dist/bandijoystick.cjs",
+  "module": "./dist/bandijoystick.js",
+  "types": "./dist/BandiJoystick.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/bandijoystick.js",
+      "require": "./dist/bandijoystick.cjs"
+    }
+  },
+  
+  "devDependencies": {
+    "@preact/preset-vite": "^2.10.2",
+    "@types/node": "^24.8.0",
+    "@types/qrcode": "^1.5.5",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.9.3",
+    "vite": "npm:rolldown-vite@7.1.14",
+	"vite-plugin-package-version": "^1.1.0",
+	"@types/three": "^0.180.0",
+	"vite-plugin-dts": "^4.5.4"
+  },
+
+  "pnpm": {
+    "overrides": {
+      "vite": "npm:rolldown-vite@7.1.14"
+    }
+  },
+
+  "dependencies": { 
+  },
+
+  "peerDependencies": {
+	  "qrcode": "^1.5.4",
+	  "trystero": "^0.22.0" 
+  },
+
+  "keywords": [
+	"trystero",
+	"remote",
+	"joystick",
+    "webrtc",
+    "p2p",
+    "peer to peer",
+    "chat",
+    "pairing",
+    "matchmaking",
+    "serverless",
+    "torrent",
+    "bittorrent",
+    "webtorrent",
+    "ipfs",
+    "mqtt",
+    "nostr",
+    "firebase",
+    "realtime",
+    "decentralized",
+    "signaling",
+    "pairing",
+    "react",
+    "supabase"
+  ]
+}

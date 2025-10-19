@@ -1,0 +1,9 @@
+.video {
+	width: 100vw;
+	height: 100vh;
+	object-fit: contain;
+	z-index: 0;
+	position: fixed;
+	left: 0px;
+	top: 0px;
+}

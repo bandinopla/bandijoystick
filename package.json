@@ -1,0 +1,84 @@
+{
+  "name": "bandijoystick-webapp",
+  "description": "A Javasript library to turn a phone into a remote control",
+  "private": true,
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bandinopla/bandijoystick"
+  },
+  "homepage": "https://bandijoystickjs.web.app/",
+  "author": "bandinopla",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bandinopla/bandijoystick/issues"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build:module": "pnpm --filter bandijoystick build",
+    "build": "vite build",
+    "preview": "vite preview",
+    "update:docs": "node src/docs/update-docs.js",
+    "test": "exec playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.1",
+    "@preact/preset-vite": "^2.10.2",
+    "@types/feather-icons": "^4.29.4",
+    "@types/node": "^24.8.0",
+    "@types/qrcode": "^1.5.5",
+    "@types/three": "^0.180.0",
+    "chalk": "^5.6.2",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.9.3",
+    "vite": "npm:rolldown-vite@7.1.14",
+    "vite-plugin-dts": "^4.5.4",
+    "vite-plugin-package-version": "^1.1.0",
+    "vite-tsconfig-paths": "^5.1.4"
+  },
+  "pnpm": {
+    "overrides": {
+      "vite": "npm:rolldown-vite@7.1.14"
+    }
+  },
+  "dependencies": {
+    "feather-icons": "^4.29.2",
+    "highlight.js": "^11.11.1",
+    "jsqr": "^1.4.0",
+    "marked": "^16.4.0",
+    "modern-normalize": "^3.0.1",
+    "nipplejs": "^0.10.2",
+    "preact": "^10.27.2",
+    "preact-iso": "^2.11.0",
+    "preact-router": "^4.1.2",
+    "qrcode": "^1.5.4",
+    "three": "^0.180.0",
+    "trystero": "^0.22.0"
+  },
+  
+  "keywords": [
+	"trystero",
+	"remote",
+	"joystick",
+    "webrtc",
+    "p2p",
+    "peer to peer",
+    "chat",
+    "pairing",
+    "matchmaking",
+    "serverless",
+    "torrent",
+    "bittorrent",
+    "webtorrent",
+    "ipfs",
+    "mqtt",
+    "nostr",
+    "firebase",
+    "realtime",
+    "decentralized",
+    "signaling",
+    "pairing",
+    "react",
+    "supabase"
+  ]
+}

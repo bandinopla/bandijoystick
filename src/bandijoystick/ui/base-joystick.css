@@ -1,0 +1,43 @@
+@import 'modern-normalize/modern-normalize.css';
+@import './spinner.css';
+body {
+	background-color: black;
+	height: 100vh;
+	background: #000000;
+	background: linear-gradient(177deg, rgba(0, 0, 0, 1) 24%, rgba(24, 24, 28, 1) 100%);
+	color:white;
+}
+
+* {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+}
+
+.full-screen-message {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 30px;
+}
+
+.close-btn {
+	position: fixed;
+    left: 50%;
+    width: 10vw;
+    height: 10vw;
+    margin-left: -5vw;
+    margin-top: 10px;
+}
+
+.joystick-label {
+	position: fixed;
+	bottom: 0px;
+	  left: 50%;
+	  transform: translateX(-50%);
+	  width: max-content;
+	  background-color: #111;
+	  color: white;;
+	  padding: 5px 10px;
+}
