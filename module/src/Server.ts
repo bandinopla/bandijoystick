@@ -1,13 +1,11 @@
 import {selfId, type Room} from 'trystero'  
 import type { KeysLayout } from './layout/KeysLayout';
 import { getConfig, type ServerConfig } from './config';
+import { joinRoom } from 'trystero/firebase';
 
-//const randomId = ()=>Math.random().toString(36).slice(2, 10);
 let room:Room; 
 
 export class Server { 
-
-	protected _roomId = "yoyodyne";
 
 	protected serverId = selfId;
 
@@ -23,7 +21,7 @@ export class Server {
 		if(!room)
 		{ 
 			this._config = { ...getConfig() };
-		 	room = this._config.customRoomGetter();
+		 	room = this._config.customRoomGetter?.() ?? (joinRoom({ appId: 'https://trystero-3e31b-default-rtdb.firebaseio.com/' }, "room-"+this.serverId));
 		}  
 
 		return {

@@ -1,5 +1,4 @@
-import { type Room} from 'trystero'
-import { joinRoom } from 'trystero/firebase';
+import { type Room} from 'trystero' 
 
   
 
@@ -8,7 +7,7 @@ export type ServerConfig = {
 	/**
 	 * Get a custom trystero room
 	 */
-	customRoomGetter : ()=>Room
+	customRoomGetter? : ()=>Room
 
 	/**
 	 * URL of the path to use to redirect the user's phone to the remote control webapp
@@ -18,9 +17,8 @@ export type ServerConfig = {
 
 //
 //
-const defaultConfig : ServerConfig = {
-	customRoomGetter: ()=>joinRoom({ appId: 'https://trystero-3e31b-default-rtdb.firebaseio.com/' }, "room-"+crypto.randomUUID().replace(/-/g, '').substring(0, 10)),
-	remoteControlUrl: import.meta.env.DEV ? import.meta.env.BASE_URL : "https://bandijoystickjs.web.app/" //"http://localhost:5173/"
+const defaultConfig : ServerConfig = { 
+	remoteControlUrl: import.meta.env.DEV ? import.meta.env.BASE_URL : "https://bandijoystickjs.web.app/" 
 }
 
 let $config : ServerConfig = defaultConfig;
