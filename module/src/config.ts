@@ -19,7 +19,7 @@ export type ServerConfig = {
 //
 //
 const defaultConfig : ServerConfig = {
-	customRoomGetter: ()=>joinRoom({ appId: 'https://trystero-3e31b-default-rtdb.firebaseio.com/' }, "bandijoystickjs"),
+	customRoomGetter: ()=>joinRoom({ appId: 'https://trystero-3e31b-default-rtdb.firebaseio.com/' }, "room-"+crypto.randomUUID().replace(/-/g, '').substring(0, 10)),
 	remoteControlUrl: import.meta.env.DEV ? import.meta.env.BASE_URL : "https://bandijoystickjs.web.app/" //"http://localhost:5173/"
 }
 
