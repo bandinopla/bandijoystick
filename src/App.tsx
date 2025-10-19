@@ -96,8 +96,8 @@ function Website()
 							<Route default component={HomePage} />
 						</Router>
 					</div>
-					<div className={"video"}>
-						<video src="/final.mp4" className={"bsha rounded"} controls></video>
+					<div className={"video"}> 
+						<iframe width="100%" height="315" src="https://www.youtube.com/embed/RfvawPnfTcI?si=TVP7CrNXFIpnkjmx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 					</div>
 				</div>
 }
