@@ -14,6 +14,7 @@ dist-ssr
 TODO
 *.mp4
 
+.firebase/
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

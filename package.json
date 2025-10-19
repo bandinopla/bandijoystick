@@ -19,7 +19,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "update:docs": "node src/docs/update-docs.js",
-    "test": "exec playwright test"
+    "test": "exec playwright test",
+	"deploy":"firebase deploy --only hosting:bandijoystickjs"
   },
   "devDependencies": {
     "@playwright/test": "^1.56.1",
