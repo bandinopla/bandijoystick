@@ -15,14 +15,19 @@ import path from 'path';
 const files = [
   "Documentation",
   { file: "overview.md", slug: "overview", label: "Overview" },
+  { file: "serverless.md", slug: "serverless", label: "Serverless" },
   { file: "Joystick.md", slug: "joystick", label: "Joystick" },
   { file: "Adding_Buttons.md", slug: "adding-buttons", label: "Adding Buttons" },
   { file: "Hiding_Buttons.md", slug: "hiding-buttons", label: "Hiding Buttons" },
   { file: "qr_code.md", slug: "qr-code", label: "QR Code" },
+  "Design",
+  { file: "architecture.md", slug: "architecture", label: "Architecture" },
+  { file: "custom_vjoystick.md" , slug: "custom-vjoystick", label: "Custom VJoystick" },
   "Button types",
   { file: "Push_Button.md", slug: "push-button", label: "Push Button" },
   { file: "Directional_Stick.md", slug: "directional_stick", label: "Directional Stick" },
-  { file: "Remote_Camera.md", slug: "remote-camera", label: "Remote Camera" }
+  { file: "Remote_Camera.md", slug: "remote-camera", label: "Remote Camera" },
+  { file: "more_buttons.md", slug: "more-buttons", label: "+ More buttons" }
 ];
 
 

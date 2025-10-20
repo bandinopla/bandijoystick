@@ -5,9 +5,9 @@ import { type Room} from 'trystero'
 export type ServerConfig = {
 
 	/**
-	 * Get a custom trystero room
+	 * Get a custom trystero room. Use the serverID in the room id, since this will avoid collisions with other App instances.
 	 */
-	customRoomGetter? : ()=>Room
+	customRoomGetter? : ( serverId:string )=>Room
 
 	/**
 	 * URL of the path to use to redirect the user's phone to the remote control webapp

@@ -1,14 +1,11 @@
 # Let's roll!
-Thank you for chosing **BandiJoystick**! This is **a JavaScript library** that wraps around [Trystero](https://oxism.com/trystero/) and allows your web application to use a phone to control it. No apps needed.  
+Thank you for chosing **BandiJoystick**! This is **a JavaScript library** that wraps around [Trystero](https://oxism.com/trystero/) and allows your web application to use a phone to control it. No apps needed. Serverless.
 
 ## Motivation
 Sometimes I would like to be able to control an app with the phone acting as a remote control, to be able to be on the couch playing a game I made or an app, etc... and see it on a big screen like the TV. So that's how the idea came out. It should be trivial to use the phone to control things... why not just scan a QR code and that's it? No apps, no weird setup. That's what this aims to be / solve.
 
 ## How it works
 Your application shows a QR code so the users can scan it with their phones and they will be redirected to a page in their phone's browser that will display a remote controller they will be able to use to control the app.
-
-### Behind the scenes
-It uses WebRTC ( P2P ) using [trystero](https://oxism.com/trystero/) to pair an input "slot" in your app to a "remote control" ( a phone ) as to allow a user to control the input from the phone.
  
 # Installation
 To allow users to control your application with their phones you have to install the following modules:

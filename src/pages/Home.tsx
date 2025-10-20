@@ -38,7 +38,7 @@ input.domElement().then( el => document.body.appendChild(el) );
 	return <div> 
 		<div className={"hero"}>
 			<h1>Turn a phone into a remote controller</h1>
-			<h2>No apps. No installations. Just scan & play!</h2>
+			<h2>No apps. No installations. Serverless. Just scan & play!</h2>
 			<div>
 				<a className={"fancyBtn"} href={import.meta.env.BASE_URL+"documentation/overview"}>Get started - It's free!</a>
 				<a className={"fancyBtn grey"} href={import.meta.env.BASE_URL+"apps"}>Examples</a>
@@ -49,6 +49,7 @@ input.domElement().then( el => document.body.appendChild(el) );
 				<pre><code className={"hljs"} dangerouslySetInnerHTML={{ __html:bash }}></code></pre>
 				Then, in your app:
 				<pre><code className={"hljs"} dangerouslySetInnerHTML={{ __html:js }}></code></pre>
+				<h4>The connection is P2P meaning there's no server in between*</h4>
 				That's it!
 			</div>
 		</div>

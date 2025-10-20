@@ -21,7 +21,7 @@ export class Server {
 		if(!room)
 		{ 
 			this._config = { ...getConfig() };
-		 	room = this._config.customRoomGetter?.() ?? (joinRoom({ appId: 'https://trystero-3e31b-default-rtdb.firebaseio.com/' }, "room-"+this.serverId));
+		 	room = this._config.customRoomGetter?.(this.serverId) ?? (joinRoom({ appId: 'https://trystero-3e31b-default-rtdb.firebaseio.com/' }, "room-"+this.serverId));
 		}  
 
 		return {
