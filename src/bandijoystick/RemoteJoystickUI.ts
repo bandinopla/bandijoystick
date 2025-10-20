@@ -11,7 +11,7 @@ import { isMobileByUserAgent } from "../utils/isMobile";
  * *******************************************************************************
  */
 
-(screen.orientation as any).lock('landscape').catch(() => { });
+//(screen.orientation as any).lock?.('landscape').catch(() => { });
 document.addEventListener('contextmenu', e => e.preventDefault());
 
 function startWebcamFeed(callback: (url?: string, error?: string) => void) {
@@ -134,36 +134,36 @@ if (BANDI.Joystick.urlCode()) {
 
 	let joystick:BANDI.Joystick;
 
-	try
-	{
-		joystick = new RemoteBandiJoystick();
-	}
-	catch(err)
-	{ 
-		indication.innerText = "ERROR: "+ err; 
+	// try
+	// {
+	// 	joystick = new RemoteBandiJoystick();
+	// }
+	// catch(err)
+	// { 
+	// 	indication.innerText = "ERROR: "+ err; 
 
-		indicationInterval = window.setTimeout(() => {
-				busy = false;
-				indication.innerText = INITIAL_TEXT;
-			}, 2000); 
-	}
+	// 	indicationInterval = window.setTimeout(() => {
+	// 			busy = false;
+	// 			indication.innerText = INITIAL_TEXT;
+	// 		}, 2000); 
+	// }
 	
-	if( joystick )
-	{
-		joystick.connected.on(() => indication.remove());
-		joystick.disconnected.on(() => {
+	// if( joystick )
+	// {
+	// 	joystick.connected.on(() => indication.remove());
+	// 	joystick.disconnected.on(() => {
 
-			//todo: show button to re-scan QR code...
-			indication.innerText = "Conection lost...";
-			document.body.appendChild(indication);
+	// 		//todo: show button to re-scan QR code...
+	// 		indication.innerText = "Conection lost...";
+	// 		document.body.appendChild(indication);
 
-			indicationInterval = window.setTimeout(() => {
-				busy = false;
-				indication.innerText = INITIAL_TEXT;
-			}, 2000);
+	// 		indicationInterval = window.setTimeout(() => {
+	// 			busy = false;
+	// 			indication.innerText = INITIAL_TEXT;
+	// 		}, 2000);
 
-		});
-	}
+	// 	});
+	// }
 
 
 }
