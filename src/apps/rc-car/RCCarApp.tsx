@@ -26,7 +26,7 @@ export default function RCCarApp()
 		const MAXDIST = 10;
 		let speed = 0;
 		let goalSpeed = 0;
-		let speedScale = 1;
+		let speedScale = 0;
 
 		let removed = false;
 
@@ -46,19 +46,19 @@ export default function RCCarApp()
 			const delta = clock.getDelta(); 
 
 			wheels.forEach(wheel=>{
-				wheel.rotateX( speed * 10 * delta)
+				wheel.rotateX( speed * speedScale * 10 * delta)
 			});
 
 			if( car )
 			{
 
-				car.rotateY( steerAngle*2*delta );
+				car.rotateY( steerAngle*2*delta*-speedScale*speed );
 
-				speed = lerp(speed, goalSpeed*speedScale, delta);
+				speed = lerp(speed, goalSpeed, delta);
 
 				//car.translateZ( speed * delta );
 				const forward = new Vector3(0, 0, 1).applyQuaternion(car.quaternion);
-				car.position.addScaledVector(forward, speed * delta);
+				car.position.addScaledVector(forward, speed * delta *speedScale);
 
 				if( car.position.length()>MAXDIST )
 				{
@@ -134,7 +134,7 @@ export default function RCCarApp()
 				const dx = -dir[0];
 				const dy = dir[1];
  
-				goalSpeed = MAXSPEED * -dy;
+				speedScale = dy? -Math.sign(dy) : -1 ; 
 
 				steerAngle = Math.atan2(-1, dx)+Math.PI/2;  
 
@@ -142,7 +142,7 @@ export default function RCCarApp()
 					if( w.userData.wheel>0 )
 					{
 						//w.rotation.y = steerAngle;
-						w.setRotationFromEuler(new Euler(0, steerAngle * Math.sign(-goalSpeed), 0))
+						w.setRotationFromEuler(new Euler(0, steerAngle  , 0))
 					}
 				});
 			}
@@ -156,7 +156,7 @@ export default function RCCarApp()
 			//#region brake
 			const onBrake = ( isDown:boolean )=>{
 			 
-					speedScale = isDown? 0 : 1; 
+					goalSpeed = isDown? MAXSPEED : 0;
 			}
 
 			const brakeKey = new BANDI.PushKey({
@@ -164,7 +164,7 @@ export default function RCCarApp()
 				x:"75%",
 				y:"50%",
 				id:"brake",
-				iconClass:"octagon", 
+				iconClass:"wind", 
 			});
 
 			brakeKey.pressed.on(onBrake);
