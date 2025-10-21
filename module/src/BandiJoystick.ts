@@ -5,6 +5,7 @@ import { DirKey } from "./key/DirKey";
 import type { KeyConfig } from "./layout/KeysLayout";
 import { Key } from "./key/Key";
 import { CameraStream } from "./key/CameraStream";
+import { GamepadRelay } from "./key/GamepadRelay";
 
 let joystickId = 0; 
  
@@ -119,7 +120,6 @@ export class Joystick extends Server {
 		this._keys.forEach( key => {
 			if( !this.stopKeySync.has(key) )
 			{
-				console.log( this._keys, key )
 				this.stopKeySync.set( key, key.keepInSync( this.api.room, this.isRemote, ()=>this.otherPeerId ) );
 			}
 		});
@@ -257,6 +257,10 @@ export class Joystick extends Server {
 
 							case "camera":
 								key = new CameraStream(kconfig, kconfig.kid); 
+								break;
+
+							case "gpad-relay":
+								key = new GamepadRelay(kconfig as any, kconfig.kid); 
 								break;
 						}  
 

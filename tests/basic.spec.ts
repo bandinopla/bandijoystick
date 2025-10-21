@@ -31,13 +31,60 @@ test('Basic interaction', pingPongTester({
 		slot.connected.on(()=>{
 			console.log("Peer connected!") 
 		});
+		
 		slot.connected.off(()=>{
 			console.log("Peer disconnected, bye!")
 		});
 
-		slot.setKeys([ push, dirkey ]); 
+		const gamepad = new window.BANDI.GamepadRelay({
+			id:"gpad",
+			radius:"5vw",
+			gamepadIndex: 0
+		});
+
+		(window as any).gamepadButton = gamepad;
+
+		gamepad.padConnected.on( isConnected => {
+			(window as any).gamepadIsConnected = isConnected;
+		})
+
+		gamepad.buttonsChanged.on( buttons => {
+			if( buttons )
+			{
+				(window as any).buttonsChaged = buttons;
+			}
+		})
+
+		gamepad.axesChanged.on( axes => {
+			console.log("AXES",axes)
+			if( axes )
+			{
+				(window as any).axesChaged = axes;
+			}
+		})
+
+		slot.setKeys([ push, dirkey, gamepad ]); 
 
 		return slot.url; 
+	},
+	phoneInitScript: ()=>{ 
+		  console.log("???")
+		  window.navigator.getGamepads = () => [{
+				 id: "FakePad",
+			      index: 0,
+			      connected: true,
+			      mapping: "standard",
+			      buttons: Array.from({ length: 16 }, () => ({ pressed: false, touched:false, value: 0 })) as readonly GamepadButton[],
+			      axes: [.1,.2,.3],
+			      timestamp: Date.now(),
+				  vibrationActuator: {
+					pulse:async ()=> false,
+			        playEffect: async () => "complete",
+			        reset: async () => "complete",
+			      },
+				  hapticActuators: []
+			}];
+
 	},
 	tests: [
 
@@ -45,13 +92,13 @@ test('Basic interaction', pingPongTester({
 		// click some keys
 		//
 		{
-			async phone() {
-
+			async phone() { 
+				
 				const slot = new window.BANDI.Joystick("", true); 
 
 				(window as any).slot = slot;
 
-				slot.connected.on(()=>console.log("Connected to app!"))
+				slot.connected.on(()=>console.log("Connected to app!"));  
 				
 				return new Promise<void>( resolve => {
 
@@ -66,7 +113,7 @@ test('Basic interaction', pingPongTester({
 						keys[0].isPressed = false;
 
 						(keys[1] as BANDI.DirKey).x = 12;
-						(keys[1] as BANDI.DirKey).y = 34;
+						(keys[1] as BANDI.DirKey).y = 34; 
 
 						resolve()
 
@@ -99,6 +146,21 @@ test('Basic interaction', pingPongTester({
 			
 			check(what) { 
 				expect(what).toEqual(12+34);
+			},
+		},
+
+		//
+		// was the gamepad relay detected??
+		//
+		{
+			async server() {
+				const win = (window as any);
+
+				return win.gamepadIsConnected && win.axesChaged;
+			},
+			
+			check(what) { 
+				expect(what).toEqual([.1,.2,.3]);
 			},
 		},
 

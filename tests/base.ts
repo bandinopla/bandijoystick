@@ -49,6 +49,19 @@ type PingPongTestConfig = {
 	 * Will run inside the app tab. Create and condifure the bandi joystick. Must return the URL of the slot created for the phone.
 	 */
 	appSetup:()=>Promise<Url>
+
+	/**
+	 * pre init script for the app page
+	 * @see https://playwright.dev/docs/api/class-page#page-add-init-script
+	 */
+	appInitScript?:VoidFunction,
+
+	/**
+	 * pre init page for the phone page
+	 * @see https://playwright.dev/docs/api/class-page#page-add-init-script
+	 */
+	phoneInitScript?:VoidFunction,
+
 	tests:(ServerTest|PhoneTest)[]
 }
 
@@ -66,6 +79,9 @@ export function pingPongTester( config:PingPongTestConfig ):testFunction {
 		
 		const context = await browser.newContext(); 
 
+		if( config.appInitScript )
+			await app.addInitScript(config.appInitScript);
+
 		await app.goto(testUrl);
 		await setupPage(app,0,"App");
 
@@ -75,8 +91,17 @@ export function pingPongTester( config:PingPongTestConfig ):testFunction {
 
 		const phone = await context.newPage();
 
+		if( config.phoneInitScript )
+		{
+			await phone.addInitScript(config.phoneInitScript);
+			console.log("Phoe init scrip runned")
+		}
+
 		await phone.goto( phoneUrl );
 		await setupPage( phone, 1, "Phone" );
+
+
+			
 
 		for (let i = 0; i < config.tests.length; i++) {
 			const tester = config.tests[i];
