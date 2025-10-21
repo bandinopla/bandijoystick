@@ -1,20 +1,51 @@
-# More to come!
-This library is young and still growing! More key types will be added in the future either by me and/or by awesome developers that decide to collab and expand it!
+# Adding new button types
+This library is young and still growing! More key types will be added in the future either by me and/or by awesome developers that decide to collab and expand it by doing pull requests.
 
-# Adding more buttons
-If you want to add more buttons, drop a [pull request](https://github.com/bandinopla/bandijoystick/pulls) and remember to work on a new branch. I'll explain now what a button is...
-
-## Location
-Keys are defined in [`module/src/key`](https://github.com/bandinopla/bandijoystick/tree/main/module/src/key) so put new keys there.
 
 ## Definition
-A button/key is a class that contains some state ( *think of the "isDown" property of a button* ) and extends the [`Key` class](https://github.com/bandinopla/bandijoystick/blob/main/module/src/key/Key.ts) which is almost empty but it has some code to handle the `visible` property of all keys ( *all keys have a visible property used to hide or show them* )
-
-The method that does the "magic" of syncing is `keepInSync`. This method is in charge of basically listening to the changed in the key's own state and mirror the changes to the Key living in the app. 
+A button is an objects that the developer of an app uses to detect when the user clicks on a button in the virtual joystick. It manages the syncronicity with the "other self" by overriding and implementing the `keepInSync` method inherited from `BANDI.Key`
 
 ```text
 [Phone's Key] <====> [App's key]
 ```
+
+# Steps to create a new type of button
+If you want to add more buttons, drop a [pull request](https://github.com/bandinopla/bandijoystick/pulls) and remember to work on a new branch. I'll explain now what a button is...
+
+## Step 1
+Add the new type in [`ButtonType`](https://github.com/bandinopla/bandijoystick/blob/main/module/src/layout/KeysLayout.ts)
+
+## Step 2
+Create the **Button Class** in [`module/src/key`](https://github.com/bandinopla/bandijoystick/tree/main/module/src/key) and extend [`BANDI.Key`](https://github.com/bandinopla/bandijoystick/blob/main/module/src/key/Key.ts)
+```js
+import { Key } from "./Key";
+
+export class YourNewButton extends Key { 
+	...
+```
+
+## Step 3
+Self assign the type in the config in the contructor: 
+```js
+constructor(config: Omit<KeyConfig, "type">, kid?: number) {
+	super({
+		...config, type: "NEW_KEY_TYPE"
+	}, kid);
+	...
+```
+
+## Step 4
+Add it to [`BANDI.Joystick`](https://github.com/bandinopla/bandijoystick/blob/main/module/src/BandiJoystick.ts) in the switch case of the `connect` method for the `isRemote` case so the new key is instantiated when the new key id is detected.
+
+## Step 5
+And lastly, export it in the [`module/module.ts`](https://github.com/bandinopla/bandijoystick/blob/main/module/src/module.ts) so it is visible when people do `BANDI.xxxx`
+
+## Step 6
+Add the documentation for it in `src/docs`
+1. create the markup file
+2. list it in `src/docs/update-docs.js`
+3. run `pnpm run update:docs` so it is added to the site ( *it will update `src/docs/index.ts` )
+
 
 ## The `keepInSync` Method
 This function is called when the key is instantiated. It will acti diferently depending on if the key is remote ( *running on the phone* ) or on the app ( *the pc / tv* )
