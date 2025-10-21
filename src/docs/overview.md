@@ -7,29 +7,34 @@ Sometimes I would like to be able to control an app with the phone acting as a r
 ## How it works
 Your application shows a QR code so the users can scan it with their phones and they will be redirected to a page in their phone's browser that will display a remote controller they will be able to use to control the app.
  
-# Installation
+## Import the library
 To allow users to control your application with their phones you have to install the following modules:
 
+## NPM
 ```bash
 npm install bandijoystick trystero qrcode
 ```  
 
-## Import the library
+## Standalone ESM
 ```js
-// ESM
-import * as BANDI from 'bandijoystick';
-
-//CJS
-const BANDI = require('bandijoystick');
-
-//UMD
-const BANDI = window.BANDI;
-```
+  <script type="importmap">
+    {
+      "imports": {
+		"bandijoystick":"https://esm.sh/bandijoystick@%PACKAGE_VERSION%",
+        "trystero": "https://esm.sh/trystero@0.22.0",
+        "trystero/firebase": "https://esm.sh/trystero@0.22.0/firebase.js",
+        "qrcode": "https://esm.sh/qrcode@1.5.4",
+      }
+    }
+  </script>
+``` 
 
 ## Create the Joystick
 In your app, for every "slot" your application needs ( *but remember that this uses webRTC under the hood so the limit is usually 5–8 peers before performance drops.* ) you will create an input slot:
 
 ```javascript 
+import * as BANDI from 'bandijoystick';
+
 //
 // this is the object you will use to read the user's input.
 //

@@ -61,7 +61,7 @@ export function Documentation(props: DocProps) {
 		{
 			fetch(url).then( resp => resp.text( )).then( text => {
 
-				text = marked.parse( text ) as string;   
+				text = marked.parse( text.replaceAll("%PACKAGE_VERSION%", import.meta.env.PACKAGE_VERSION) ) as string;   
 				setDoc(text);
 
 				requestAnimationFrame(()=>hljs.highlightAll())
