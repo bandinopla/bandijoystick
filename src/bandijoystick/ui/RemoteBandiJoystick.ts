@@ -44,9 +44,9 @@ export class RemoteBandiJoystick extends BANDI.Joystick {
 						div.style.position = "absolute";  
 						div.style.left = `calc( ${ key.config.x ?? "0px" } - ${key.config.radius} / 2 )`;
 						div.style.top = `calc( ${ key.config.y ?? "0px" } - ${key.config.radius} / 2 )`;
-						
+						div.id = key.config.id;
 
-				const keyCleanupFn = createKeyUI[key.config.type]?.(div, key);
+				const keyCleanupFn = createKeyUI(key, div);
 
 				if( keyCleanupFn )
 				{
