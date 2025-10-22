@@ -69,9 +69,7 @@ function MainMenu() {
 				<div className={"label"}>{section.label}</div>
 				{section.links.map(link => <a key={link.label} href={ link.path.startsWith("http")? link.path : base + link.path} className={ path=="/"+link.path?"highlight":"" }>{link.label}</a>)}
 			</nav> 
-		</div>)}
-
-		<div style={{marginTop:20, fontSize:"small"}}>version {import.meta.env.PACKAGE_VERSION}-beta</div>
+		</div>)} 
 	</>
 } 
 
@@ -90,6 +88,7 @@ function Website()
 							<Route path="/documentation/:key?" component={DocumentationMenu} />
 							<Route default component={MainMenu} /> 
 						</Router> 
+						<div style={{marginTop:20, fontSize:"small"}}>version {import.meta.env.PACKAGE_VERSION}-beta</div>
 					</div>
 					<div className={"mw-800"}>
 						<Router>  
