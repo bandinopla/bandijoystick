@@ -1,9 +1,5 @@
 //----------- BUTTONS ---------------------------------------
-export { CameraStream } from "./key/CameraStream";
-export { DirKey } from "./key/DirKey";
-export { Key } from "./key/Key";
-export { PushKey } from "./key/PushKey";
-export { GamepadRelay } from "./key/GamepadRelay"
+export * from "./key/module.ts"; 
 //----------- end BUTTONS ------------------------------------
 
 
