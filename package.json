@@ -45,6 +45,9 @@
       "vite": "npm:rolldown-vite@7.1.14"
     }
   },
+  "engines": {
+	  "pnpm": ">=8.0.0"
+	},
   "dependencies": {
     "feather-icons": "^4.29.2",
     "highlight.js": "^11.11.1",
