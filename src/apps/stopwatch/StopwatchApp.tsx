@@ -207,8 +207,8 @@ export default function StopWatchApp() {
 	return <div className={styles.root} >
 
 		{laps.length > 0 && <LapsDisplay laps={laps} lessIsBetter={lessIsBetter} />}
-		<div className={styles.mainDigits} dangerouslySetInnerHTML={{ __html: formatTime(lapTime) }}></div>
-		{laps.length > 0 && <div className={styles.subDigits} dangerouslySetInnerHTML={{ __html: formatTime(time) }}></div>}
+		<div id="lap-time" className={styles.mainDigits} dangerouslySetInnerHTML={{ __html: formatTime(lapTime) }}></div>
+		{laps.length > 0 && <div className={styles.subDigits} id="time" dangerouslySetInnerHTML={{ __html: formatTime(time) }}></div>}
 
 
 	</div>

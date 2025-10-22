@@ -361,6 +361,7 @@ export class Joystick extends Server {
 			label.style.backgroundColor = "black";
 			label.style.textAlign = "center";
 
+			canvas.dataset.url = this.url; 
 
 			div.appendChild( label );
 			div.appendChild( canvas );

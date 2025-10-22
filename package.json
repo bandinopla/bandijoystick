@@ -20,6 +20,7 @@
     "preview": "vite preview",
     "update:docs": "node src/docs/update-docs.js",
     "test": "exec playwright test",
+    "test:ui": "exec playwright test --ui --ui-port=0",
     "deploy": "firebase deploy --only hosting:bandijoystickjs",
 	"create:key": "node scripts/create-new-key.js"
   },
