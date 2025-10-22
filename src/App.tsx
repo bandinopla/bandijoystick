@@ -71,7 +71,7 @@ function MainMenu() {
 			</nav> 
 		</div>)}
 
-		<div style={{marginTop:20, fontSize:"small"}}>version {import.meta.env.PACKAGE_VERSION}</div>
+		<div style={{marginTop:20, fontSize:"small"}}>version {import.meta.env.PACKAGE_VERSION}-beta</div>
 	</>
 } 
 
