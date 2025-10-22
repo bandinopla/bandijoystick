@@ -3,6 +3,7 @@ import { createButton } from "./Button";
 import { createCameraStreamButton } from "./CameraStreamDisplay";
 import { createDirectonalStickButton } from "./Stick";
 import { createGamepadRelayButton } from "./GamepadRelayUI";
+import { createDeviceMotionRelayUI } from "./DeviceMotionRelayUI";
 //%IMPORT%
 
 const mapping : { [key in ButtonType]:(host:HTMLDivElement, key:Key)=>VoidFunction } = {
@@ -10,6 +11,7 @@ const mapping : { [key in ButtonType]:(host:HTMLDivElement, key:Key)=>VoidFuncti
 	,"vec2": createDirectonalStickButton
 	,"camera": createCameraStreamButton
 	,"gpad-relay": createGamepadRelayButton
+	,"motion":createDeviceMotionRelayUI
 	//%INSERT_NEW_MAPPING%
 }
 

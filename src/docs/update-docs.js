@@ -27,7 +27,8 @@ const files = [
   { file: "Push_Button.md", slug: "push-button", label: "Push Button" },
   { file: "Directional_Stick.md", slug: "directional_stick", label: "Directional Stick" },
   { file: "Remote_Camera.md", slug: "remote-camera", label: "Remote Camera" },
-  { file: "gamepad_relay.md", slug: "gamepad-relay", label: "Gamead Relay" },
+  { file: "gamepad_relay.md", slug: "gamepad-relay", label: "Gamepad Relay" },
+  {"file":"DeviceMotionRelayDoc.md","slug":"devicemotionrelay","label":"DeviceMotionRelay"},
   //%NEW-KEY%
   { file: "more_buttons.md", slug: "more-buttons", label: "+ More buttons" },
   "Testing",

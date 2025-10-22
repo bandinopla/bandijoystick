@@ -1,12 +1,8 @@
 import type { GamepadRelay } from "bandijoystick";
+import { createLED } from "../utils/led";
 
-export function createGamepadRelayButton( host:HTMLDivElement, key:GamepadRelay ) {
-	host.style.transition = "background-color .5s, opacity .2s";
-
-	const led = ( intensity:number ) => {
-		host.style.backgroundColor = intensity>0? key.config.background ?? "green" : "#222";
-		host.style.opacity = `${intensity*100}%`;
-	}
+export function createGamepadRelayButton( host:HTMLDivElement, key:GamepadRelay ) { 
+	const led = createLED(host, key.config.background); 
 
 	const onPadConnected = (isConnected:boolean) => led(isConnected?1:0);
 	let intrvl = 0;
