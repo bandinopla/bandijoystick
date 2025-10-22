@@ -3,17 +3,11 @@ We use [Playwright](https://playwright.dev/) to automate the tests in [`/tests`]
 
 ```bash
 pnpm run test
-```
-
-## Compiling the module
-Tests run using the compiled library so run:
-
-```bash
-pnpm run build:module
-```
-after making changes so the code or else you wont see any change in the tests results.
+``` 
 
 ## Ping Pong tester
+For the case where you want to test a ping pong between an app and the phone...
+
 Simulate the back and forth of the app and the phone, sending and recieving data, easily. The functions from this config **will run inside of the browser tab of the app or phone**, not in the environment running the test!
 
 ```js

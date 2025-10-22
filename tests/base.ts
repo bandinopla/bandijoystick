@@ -29,8 +29,8 @@ async function setupPage(page:Page, index:number, role:string )
 		    }
 		  </script>
 		`);
-
-	await page.evaluate( async (path:string) => window.BANDI = await import(path), `../module/dist/bandijoystick.js` );
+		//@ts-ignore
+	await page.evaluate( async () => window.BANDI = await import("http://localhost:5173/module/src/module.ts") );
 } 
 
 type Url = string;

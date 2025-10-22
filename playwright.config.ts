@@ -80,10 +80,14 @@ export default defineConfig({
   ],
 
   /* Run your local dev server before starting the tests */
-  webServer: {
+  webServer: [{
     command:
       'pnpm dlx serve -p 8080 --ssl-cert ./tests/certs/cert.pem --ssl-key ./tests/certs/key.pem',
     url: 'https://localhost:8080',
     ignoreHTTPSErrors: true
-  }, 
+  },
+	{
+		command:"pnpm run dev",
+		url:"http://localhost:5173",	
+	}]
 });
