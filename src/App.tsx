@@ -4,10 +4,13 @@ import "./style.css";
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
 import bash from 'highlight.js/lib/languages/bash'
+import CopyButtonPlugin from "highlightjs-copy"
+import "highlightjs-copy/styles/highlightjs-copy.css";
 
 // Then register the languages you need
 hljs.registerLanguage('bash', bash);
 hljs.registerLanguage('javascript', javascript);
+hljs.addPlugin(new CopyButtonPlugin()); 
 
 import { render } from 'preact'
 import { lazy, LocationProvider, Route, Router, useRoute } from 'preact-iso'

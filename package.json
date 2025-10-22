@@ -45,6 +45,7 @@
   "dependencies": {
     "feather-icons": "^4.29.2",
     "highlight.js": "^11.11.1",
+    "highlightjs-copy": "^1.0.6",
     "jsqr": "^1.4.0",
     "marked": "^16.4.0",
     "modern-normalize": "^3.0.1",

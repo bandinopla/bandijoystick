@@ -17,6 +17,9 @@ importers:
       highlight.js:
         specifier: ^11.11.1
         version: 11.11.1
+      highlightjs-copy:
+        specifier: ^1.0.6
+        version: 1.0.6
       jsqr:
         specifier: ^1.4.0
         version: 1.4.0
@@ -1323,6 +1326,9 @@ packages:
   highlight.js@11.11.1:
     resolution: {integrity: sha512-Xwwo44whKBVCYoliBQwaPvtd/2tYFkRQtXDWj1nackaV2JPXx3L0+Jvd8/qCJ2p+ML0/XVkJ2q+Mr+UVdpJK5w==}
     engines: {node: '>=12.0.0'}
+
+  highlightjs-copy@1.0.6:
+    resolution: {integrity: sha512-UaHIlJ4rkk5R4OVDnpgxevIuYdHggN5sPgs3E/2FKLxypvzAQVTOZl66hm8cEnhrEoLHTGkQymLtfJ/efyv24Q==}
 
   http-parser-js@0.5.10:
     resolution: {integrity: sha512-Pysuw9XpUq5dVc/2SMHpuTY01RFl8fttgcyunjL7eEMhGM3cI4eOmiCycJDVCo/7O7ClfQD3SaI6ftDzqOXYMA==}
@@ -3856,6 +3862,8 @@ snapshots:
   hi-base32@0.5.1: {}
 
   highlight.js@11.11.1: {}
+
+  highlightjs-copy@1.0.6: {}
 
   http-parser-js@0.5.10: {}
 

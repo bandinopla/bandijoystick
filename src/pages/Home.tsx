@@ -1,18 +1,13 @@
-import { useMemo } from "preact/hooks";
+import { useEffect, useMemo } from "preact/hooks";
 
 // Using ES6 import syntax
 import hljs from 'highlight.js/lib/core'; 
 
 export function HomePage() {
 
-	const bash = useMemo(()=> hljs.highlight(
-			  'npm install bandijoystick trystero qrcode',
-			  { language: 'bash' }
-			).value
-	,[]);
+	const bash = 'npm install bandijoystick trystero qrcode';
 
-	const js = useMemo(()=> hljs.highlight(
-			  `import * as BANDI from 'bandijoystick';
+	const js = `import * as BANDI from 'bandijoystick';
 
 const input = new BANDI.Joystick( "Player 1" );
 
@@ -30,10 +25,9 @@ input.connected.on(()=>console.log("Player 1 has joined da game, ya'll!!!"));
 
 //add it to the page
 input.domElement().then( el => document.body.appendChild(el) ); 
-` ,
-			  { language: 'javascript' }
-			).value
-	,[]);
+`;
+
+	useEffect(()=>hljs.highlightAll(),[]);
 
 	return <div> 
 		<div className={"hero"}>
