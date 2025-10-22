@@ -1,17 +1,17 @@
-name: Playwright Tests
-# on:
-#   push:
-#     branches: [ main, master ]
-#   pull_request:
-#     branches: [ main, master ]
+name: Run tests to make sure everything still works...
 on:
-  workflow_dispatch:
+  workflow_call: {}
+  workflow_dispatch: {}
 jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - uses: actions/cache@v3
+      with:
+        path: ~/.pnpm-store           # or pnpm store path
+        key: ${{ runner.os }}-node-${{ hashFiles('pnpm-lock.yaml') }}
     - uses: actions/setup-node@v4
       with:
         node-version: lts/*
@@ -26,4 +26,4 @@ jobs:
       with:
         name: playwright-report
         path: playwright-report/
-        retention-days: 30
+        retention-days: 3
