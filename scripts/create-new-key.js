@@ -109,7 +109,7 @@ $0`, className );
 	//
 	file = "src/docs/Push_Button.md";
 	newFile = `src/docs/${className}Doc.md`
-	replaceInFile(file+"-->"+newFile, /.*/g, `` );
+	replaceInFile(file+"-->"+newFile, /.*/g, ` ` );
 	log(chalk.green( 'Empty documentation file created in ' + chalk.blue.underline.bold(newFile) ));
 
 	//
