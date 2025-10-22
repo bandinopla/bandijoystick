@@ -5,7 +5,7 @@
  * 			import.meta.env.PACKAGE_VERSION = {module/package.json}.version	
  * 	
  *******************************************************/
-import packageJson from "../../module/package.json";
+import packageJson from "../module/package.json";
 
 var envInjectionFailed = false;
 var createPlugin = () => {

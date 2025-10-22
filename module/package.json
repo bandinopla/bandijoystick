@@ -2,7 +2,7 @@
   "name": "bandijoystick",
   "description": "A Javasript library to turn a phone into a remote control",
   "private": false,
-  "version": "0.1.4",
+  "version": "0.1.5",
   "type": "module",
   "repository": {
     "type": "git",

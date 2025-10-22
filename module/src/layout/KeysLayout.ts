@@ -26,6 +26,10 @@ export type KeyConfig = {
 	radius:string
 	visible?:boolean
 } 
+
+export type RemoteKeyConfig = KeyConfig & {
+	kid:number
+}
  
 
 export type KeysLayout = {

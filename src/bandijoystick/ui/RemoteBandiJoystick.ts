@@ -1,13 +1,7 @@
-import * as BANDI from "bandijoystick"; 
-//import { PushKey } from "../key/PushKey";
-//import { DirKey } from "../key/DirKey";
-//import { CameraStream } from "../key/CameraStream";
-
-import { Button } from "./Button";
-import { Stick } from "./Stick";
-
-import { CameraStreamDisplay } from "./CameraStreamDisplay";
+import * as BANDI from "bandijoystick";   
 import feather, { type FeatherIconNames } from "feather-icons"; 
+import { createKeyUI } from "./key/factory";
+import { Button } from "./key/Button";
  
  
 /**
@@ -22,24 +16,13 @@ export class RemoteBandiJoystick extends BANDI.Joystick {
 		label.classList.add("joystick-label");
 		document.body.appendChild(label);
 
-		const remove : VoidFunction[] = []; 
-
-		//
-		// BUttonType map to the function that creates the UI for it...
-		//
-		const factory: Record<BANDI.ButtonType, ( host:HTMLDivElement, key:BANDI.Key )=>VoidFunction > = {
-			"button": this.createButton,
-			"vec2": this.createDirectonalStickButton, 
-			"camera": this.createCameraStreamButton,
-			"gpad-relay": this.createGamepadRelayButton
-		}
+		const remove : VoidFunction[] = [];
 
 		//
 		// create the keys... (the app sent us the keys to be used/displayed)
 		//
 		this.keysChange.on( newKeys => {
-
-			console.log("NEW LAYOUT !")
+ 
 			label.style.display="";
 			label.innerText = this.label;
 
@@ -63,7 +46,7 @@ export class RemoteBandiJoystick extends BANDI.Joystick {
 						div.style.top = `calc( ${ key.config.y ?? "0px" } - ${key.config.radius} / 2 )`;
 						
 
-				const keyCleanupFn = factory[key.config.type]?.(div, key);
+				const keyCleanupFn = createKeyUI[key.config.type]?.(div, key);
 
 				if( keyCleanupFn )
 				{
@@ -132,92 +115,6 @@ export class RemoteBandiJoystick extends BANDI.Joystick {
 			remove.length = 0;
 			label.style.display="none";
 		}); 
-	}
-
-	private createButton( host:HTMLDivElement, key:BANDI.PushKey )
-	{
-		const btn = new Button( key.config.iconClass );
-
-		host.appendChild( btn.dom );
-		
-		btn.onPressed = isDown => key.isPressed=isDown;
-
-		if( key.config.background )
-		{
-			btn.setColor( key.config.background );
-		}
-
-		return ()=>{
-			btn.dispose()
-		}
-	}
-
-	private createDirectonalStickButton( host:HTMLDivElement, key:BANDI.DirKey ) {
-			const stick = new Stick(host);
-
-			stick.onMove = (x, y)=>{
-				key.x = x;
-				key.y = y;
-			}
-
-			if( key.config.background )
-			{
-				stick.setColor( key.config.background );
-			}
-
-			return ()=>stick.dispose()
-	}
-
-	private createCameraStreamButton( host:HTMLDivElement, key:BANDI.CameraStream ) {
-		const camBtn = new CameraStreamDisplay();
-
-		camBtn.getCameraStream = key.startCameraStream.bind(key);
-
-		host.appendChild( camBtn.dom ); 
-		 
-		const onStream = (stream:MediaStream|undefined) => {
-			if(!stream)
-			{
-				console.log("Reset hoystick camera")
-				camBtn.reset();
-			}
-		}
-
-		key.onStream.on(onStream)
-
-		return ()=>{ 
-			camBtn.dispose();
-			key.onStream.off(onStream)
-		};
-	}
-
-	private createGamepadRelayButton( host:HTMLDivElement, key:BANDI.GamepadRelay ) {
-		host.style.transition = "background-color .5s, opacity .2s";
-
-		const led = ( intensity:number ) => {
-			host.style.backgroundColor = intensity>0? key.config.background ?? "green" : "#222";
-			host.style.opacity = `${intensity*100}%`;
-		}
-
-		const onPadConnected = (isConnected:boolean) => led(isConnected?1:0);
-		let intrvl = 0;
-
-		const onData = ()=>{
-			clearInterval(intrvl);
-			led(1);
-			intrvl = window.setTimeout(()=>led(0.5),500);
-		}
-		
-		key.padConnected.on( onPadConnected )
-		key.buttonsChanged.on( onData );
-		key.axesChanged.on( onData );
-
-		return ()=>{
-			clearInterval(intrvl);
-			key.padConnected.off( onPadConnected )
-			key.buttonsChanged.off( onData );
-			key.axesChanged.off( onData );
-		};
 	}
 
 	private onKeyError = (error:string) => {

@@ -1,18 +1,10 @@
 import { Signal } from "./utils/Signal";  
 import { Server } from "./Server";
-import { PushKey } from "./key/PushKey";
-import { DirKey } from "./key/DirKey";
-import type { KeyConfig } from "./layout/KeysLayout";
+import type { RemoteKeyConfig } from "./layout/KeysLayout";
 import { Key } from "./key/Key";
-import { CameraStream } from "./key/CameraStream";
-import { GamepadRelay } from "./key/GamepadRelay";
+import { newKeyFor } from "./key/factory";
 
 let joystickId = 0; 
- 
-
-type RemoteKeyConfig = KeyConfig & {
-	kid:number
-}
 
 
 export class Joystick extends Server {
@@ -241,32 +233,7 @@ export class Joystick extends Server {
 			onKeys( (newKeys, peer) => {
 				if( peer==this.serverId ) { 
 
-					this.setKeys( newKeys.map( kconfig=>{
-
-						let key :Key;
-
-						switch( kconfig.type )
-						{
-							case "button":
-								key = new PushKey(kconfig, kconfig.kid);  
-								break;
-
-							case "vec2":
-								key = new DirKey(kconfig, kconfig.kid); 
-								break;
-
-							case "camera":
-								key = new CameraStream(kconfig, kconfig.kid); 
-								break;
-
-							case "gpad-relay":
-								key = new GamepadRelay(kconfig as any, kconfig.kid); 
-								break;
-						}  
-
-						return key!;
-
-					}) );
+					this.setKeys( newKeys.map( kconfig=>newKeyFor( kconfig )) );
 
 				};
 			}); 

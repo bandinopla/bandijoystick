@@ -1,7 +1,8 @@
 import nipplejs from 'nipplejs';
 import styles from "./Stick.module.css";
+import type { DirKey } from 'bandijoystick';
 
-export class Stick {
+class Stick {
 	onMove?:(x:number, y:number)=>void;
 
 	readonly dispose: VoidFunction;
@@ -35,4 +36,21 @@ export class Stick {
 
 			this.dispose = ()=>manager.destroy()
 	}
+}
+
+
+export function createDirectonalStickButton( host:HTMLDivElement, key:DirKey ) {
+		const stick = new Stick(host);
+
+		stick.onMove = (x, y)=>{
+			key.x = x;
+			key.y = y;
+		}
+
+		if( key.config.background )
+		{
+			stick.setColor( key.config.background );
+		}
+
+		return ()=>stick.dispose()
 }

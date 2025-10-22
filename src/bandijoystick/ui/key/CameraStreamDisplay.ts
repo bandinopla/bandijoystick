@@ -1,8 +1,8 @@
-import { Signal } from "bandijoystick";
+import { CameraStream, Signal } from "bandijoystick";
 import { Button } from "./Button";
 import styles from "./CameraStreamDisplay.module.css";
 
-export class CameraStreamDisplay {
+class CameraStreamDisplay {
 
 	private $onError = new Signal();
 	readonly dom:HTMLDivElement; 
@@ -99,4 +99,27 @@ export class CameraStreamDisplay {
 		}
 
 	}
+}
+
+export function createCameraStreamButton( host:HTMLDivElement, key:CameraStream ) {
+	const camBtn = new CameraStreamDisplay();
+
+	camBtn.getCameraStream = key.startCameraStream.bind(key);
+
+	host.appendChild( camBtn.dom ); 
+	 
+	const onStream = (stream:MediaStream|undefined) => {
+		if(!stream)
+		{
+			console.log("Reset hoystick camera")
+			camBtn.reset();
+		}
+	}
+
+	key.onStream.on(onStream)
+
+	return ()=>{ 
+		camBtn.dispose();
+		key.onStream.off(onStream)
+	};
 }

@@ -20,9 +20,11 @@
     "preview": "vite preview",
     "update:docs": "node src/docs/update-docs.js",
     "test": "exec playwright test",
-	"deploy":"firebase deploy --only hosting:bandijoystickjs"
+    "deploy": "firebase deploy --only hosting:bandijoystickjs",
+	"create:key": "node scripts/create-new-key.js"
   },
   "devDependencies": {
+    "@inquirer/prompts": "^7.9.0",
     "@playwright/test": "^1.56.1",
     "@preact/preset-vite": "^2.10.2",
     "@types/feather-icons": "^4.29.4",
@@ -57,11 +59,10 @@
     "three": "^0.180.0",
     "trystero": "^0.22.0"
   },
-  
   "keywords": [
-	"trystero",
-	"remote",
-	"joystick",
+    "trystero",
+    "remote",
+    "joystick",
     "webrtc",
     "p2p",
     "peer to peer",

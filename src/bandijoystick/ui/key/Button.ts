@@ -1,3 +1,4 @@
+import type { PushKey } from "bandijoystick";
 import styles from "./Button.module.css"
 import feather, { type FeatherIconNames } from "feather-icons";
 
@@ -42,4 +43,22 @@ export class Button {
 	}
 
 
+}
+
+export function createButton( host:HTMLDivElement, key:PushKey )
+{
+	const btn = new Button( key.config.iconClass );
+
+	host.appendChild( btn.dom );
+	
+	btn.onPressed = isDown => key.isPressed=isDown;
+
+	if( key.config.background )
+	{
+		btn.setColor( key.config.background );
+	}
+
+	return ()=>{
+		btn.dispose()
+	}
 }

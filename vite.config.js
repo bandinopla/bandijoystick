@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import path from 'path';
-import version from './src/utils/module_version';
+import version from './scripts/module_version';
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 
