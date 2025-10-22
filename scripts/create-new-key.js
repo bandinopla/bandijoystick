@@ -27,7 +27,7 @@ function replaceInFile(filePath, what, replacement) {
 	}
 	else 
 	{
-		text += what;
+		text = text.trim() +"\n"+what.trim();
 	}
 	
 
@@ -100,7 +100,7 @@ You are a smart dev, right?` })
 	//
 	file = "src/bandijoystick/ui/key/factory.ts";
 	replaceInFile(file, `//%IMPORT%`, `import { create${className}UI } from "./${className}UI";
-	$0`, className );
+$0`, className );
 	replaceInFile(file, /(\s+)(\/\/%INSERT_NEW_MAPPING%)/g, `$1,"${buttonType}":create${className}UI$1$2` );
 	log(chalk.green( 'Added UI to the factory' + chalk.blue.underline.bold(file) ));
 
@@ -109,7 +109,7 @@ You are a smart dev, right?` })
 	//
 	file = "src/docs/Push_Button.md";
 	newFile = `src/docs/${className}Doc.md`
-	replaceInFile(file+"-->"+newFile, /.*/g, `# ${className}` );
+	replaceInFile(file+"-->"+newFile, /.*/g, `` );
 	log(chalk.green( 'Empty documentation file created in ' + chalk.blue.underline.bold(newFile) ));
 
 	//
