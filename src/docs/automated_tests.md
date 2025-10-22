@@ -4,11 +4,18 @@ We use [Playwright](https://playwright.dev/) to automate the tests in [`/tests`]
 ```bash
 pnpm run test
 ``` 
+Or in [UI Mode](https://playwright.dev/docs/test-ui-mode)
+```bash
+pnpm run test:ui
+``` 
+The config will run 2 webServers:
+1. **localhost:8080** a basic "serve". The test url will be `/tests/index.html`. Useful for quick tests focusing on just they Keys, no UI.
+2. **localhost:5173** The vite dev server. Useful to do UI tests. So you can edit files and they will be updated in the test.
 
 ## Ping Pong tester
-For the case where you want to test a ping pong between an app and the phone...
+For the case where you want to test a ping pong between an app and the phone with no UI, just a quick way to test if the keys work.
 
-Simulate the back and forth of the app and the phone, sending and recieving data, easily. The functions from this config **will run inside of the browser tab of the app or phone**, not in the environment running the test!
+The functions from this config **will run inside of the browser tab of the app or phone**, not in the environment running the test!
 
 ```js
 import { test, expect } from '@playwright/test';
