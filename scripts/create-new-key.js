@@ -120,7 +120,7 @@ $0`, className );
 	// update documentation doc script
 	//
 	file = "src/docs/update-docs.js";
-	replaceInFile(file, /(\s+)(\/\/%NEW-KEY%)/g, JSON.stringify(doc)+",$0" ); 
+	replaceInFile(file, /(\s+)(\/\/%NEW-KEY%)/g, "$1"+JSON.stringify(doc)+",$0" ); 
 	log(chalk.green( 'Documentation linked in ' + chalk.blue.underline.bold(file) ));
 
 	execSync("pnpm run update:docs", { stdio: "inherit" })
