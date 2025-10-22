@@ -29,7 +29,9 @@ const files = [
   { file: "Remote_Camera.md", slug: "remote-camera", label: "Remote Camera" },
   { file: "gamepad_relay.md", slug: "gamepad-relay", label: "Gamead Relay" },
   //%NEW-KEY%
-  { file: "more_buttons.md", slug: "more-buttons", label: "+ More buttons" }
+  { file: "more_buttons.md", slug: "more-buttons", label: "+ More buttons" },
+  "Testing",
+  { file: "automated_tests.md", slug: "automated-tests", label: "Automated tests" },
 ];
 
 
