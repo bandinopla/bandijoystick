@@ -4,16 +4,26 @@ import { pingPongTester } from './base';
 
 test('Gamepad Relay test', pingPongTester({
 	appSetup: async ()=>{
-		const slot = new window.BANDI.Joystick("Player1", false);
-
+		const slot = new window.BANDI.Joystick("Player1", false); 
 
 		const gamepad = new window.BANDI.GamepadRelay({
 			id:"gpad",
 			radius:"5vw",
-			gamepadIndex: 0
+			gamepadIndex: 0,
+			onInput: ()=>{
+				window.inputDetected = true
+			}
 		});
 
-		(window as any).gpad = gamepad;
+		window.gamepadRelay = gamepad;
+ 
+		gamepad.buttonsChanged.on( buttons => {
+			window.buttonsOk = buttons![0].pressed && !buttons![1].pressed;
+		});
+
+		gamepad.axesChanged.on( axes => {
+			window.axesOk = axes!.every((v,i)=>v==(i+1)/10)
+		});
 
 
 		slot.setKeys([ gamepad ]); 
@@ -43,62 +53,45 @@ test('Gamepad Relay test', pingPongTester({
 		{
 			async phone() { 
 				
-				const slot = new window.BANDI.Joystick("", true); 
-
-				(window as any).slot = slot;
-
-				slot.connected.on(()=>console.log("Connected to app!"));  
+				const slot = new window.BANDI.Joystick("", true);   
 				
-				return new Promise<void>( resolve => {
+				return new Promise<string>( resolve => {
 
-					slot.keysChange.on( _=>{ 
+					slot.keysChange.on( keys =>{ 
  
 
-						resolve()
+						resolve( keys![0].config.type )
 
 					} );
 
 				} );
 			},  
+ 
+			check: what => expect(what).toBe("gpad-relay")
 		},
  
+		//
+		// butons
+		//
+		{
+			server: ()=>window.buttonsOk , 
+			check: what => expect(what).toBe(true)
+		}, 
+
 		//
 		// axes
 		//
 		{
-			async server() {
-				return (window as any).gpad.axes;
-			},
-			
-			check(what) { 
-				expect(what).toEqual([.1,.2,.3]);
-			},
-		},
-
-		//
-		// buttons
-		//
-		{
-			async server() {
-				return (window as any).gpad.buttons.flatMap((btn : GamepadButton)=>btn.pressed);
-			},
-			
-			check(what) { 
-				expect(what.slice(0,4)).toEqual([true,false,true,false]);
-			},
-		},
+			server: ()=>window.axesOk , 
+			check: what => expect(what).toBe(true)
+		}, 
 
 		//
 		// mapping
 		//
 		{
-			async server() {
-				return (window as any).gpad.mapping;
-			},
-			
-			check(what) { 
-				expect(what).toEqual( "standard");
-			},
+			server: () => window.gamepadRelay.mapping,
+			check: what => expect(what).toBe("standard") 
 		},
 	]
 }));

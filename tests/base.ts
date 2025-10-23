@@ -8,7 +8,7 @@ declare global {
   interface Window {
     BANDI: typeof BANDI;      // or the proper type
     trystero: any;   // if needed
-	 
+	[key:string]:any
   }
 }
 
@@ -97,7 +97,10 @@ export function pingPongTester( config:PingPongTestConfig ):testFunction {
 			console.log("Phoe init scrip runned")
 		}
 
+		await context.grantPermissions(['accelerometer', 'gyroscope'], { origin: phoneUrl });
+
 		await phone.goto( phoneUrl );
+		
 		await setupPage( phone, 1, "Phone" );
 
 
