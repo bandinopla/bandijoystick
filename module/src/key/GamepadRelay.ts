@@ -1,5 +1,6 @@
 import type { Room } from "trystero";
-import { Signal, type KeyConfig } from "../module";
+import { Signal } from "../utils/Signal"; 
+import type { KeyConfig } from "../layout/KeysLayout";
 import { Key } from "./Key";
  
 
