@@ -15,7 +15,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/module.ts'),
       name: 'BandiJoystick',
-	  formats: ['es', 'cjs', 'umd' ],
+	  formats: ['es'],
     }, 
 	
     rollupOptions: { 

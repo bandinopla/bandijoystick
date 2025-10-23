@@ -2,7 +2,7 @@
   "name": "bandijoystick",
   "description": "A Javasript library to turn a phone into a remote control",
   "private": false,
-  "version": "0.1.6",
+  "version": "0.1.7",
   "type": "module",
   "repository": {
     "type": "git",
@@ -27,14 +27,11 @@
     "README.md"
   ],
   
-  "main": "./dist/bandijoystick.cjs",
+  "main": "./dist/bandijoystick.js",
   "module": "./dist/bandijoystick.js",
   "types": "./dist/BandiJoystick.d.ts",
   "exports": {
-    ".": {
-      "import": "./dist/bandijoystick.js",
-      "require": "./dist/bandijoystick.cjs"
-    }
+    ".": "./dist/bandijoystick.js"
   },
   
   "devDependencies": {
