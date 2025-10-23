@@ -164,9 +164,7 @@ export class Image extends Key {
 			};
 		}
 		else 
-		{
-			let lastSrc:string;
-
+		{   
 			const onBgSizeChange = (newSize:string)=>{
 				sendBgSize(newSize, getPeerId());
 			} 
