@@ -3,6 +3,9 @@
 
 You must define the keys the `BANDI.Joystick` will have / display. The keys are what you will use to connect the remote with your app. There are a few kinds of buttons, in this example a classic "push button" is used.
 
+## Pivot
+Buttons/Keys have their **pivots at the center** ( in the default UI representation of them hosted at bandijoystick.web.app ), and the radius is half the width. You should probably position the buttons using percentages of screen size to make it responsive. 
+
 ## Create the button
 All key types share a common configuration object, and some may add extra properties to it:
 
