@@ -1,6 +1,6 @@
 
  
-export type ButtonType = "motion" | "vec2" | "button" | "camera" | "gpad-relay";
+export type ButtonType = "image" | "motion" | "vec2" | "button" | "camera" | "gpad-relay";
 
 type CSSLength = `${number}px` | `${number}%` | `${number}vh` | `${number}vw`;
 

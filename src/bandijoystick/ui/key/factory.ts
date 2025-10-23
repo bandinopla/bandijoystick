@@ -4,6 +4,7 @@ import { createCameraStreamButton } from "./CameraStreamDisplay";
 import { createDirectonalStickButton } from "./Stick";
 import { createGamepadRelayButton } from "./GamepadRelayUI";
 import { createDeviceMotionRelayUI } from "./DeviceMotionRelayUI";
+import { createImageUI } from "./ImageUI";
 //%IMPORT%
 
 const mapping : { [key in ButtonType]:(host:HTMLDivElement, key:Key)=>VoidFunction } = {
@@ -12,6 +13,7 @@ const mapping : { [key in ButtonType]:(host:HTMLDivElement, key:Key)=>VoidFuncti
 	,"camera": createCameraStreamButton
 	,"gpad-relay": createGamepadRelayButton
 	,"motion":createDeviceMotionRelayUI
+	,"image":createImageUI
 	//%INSERT_NEW_MAPPING%
 }
 
