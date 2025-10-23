@@ -273,7 +273,15 @@ export class Joystick extends Server {
 				if( this._keys )
 				{
 					console.log("Sending the keys...")
-					sendKeys( this._keys.map(k=>({ ...k.config, kid:k.kid, visible:k.visible })), this.currentPeer );
+					sendKeys( this._keys.map(k=>({ ...k.config, kid:k.kid, visible:k.visible })), this.currentPeer ).then(()=>{
+
+						//
+						// send any state they may currently have in case they are stateful...
+						//
+						this._keys?.forEach(k=>(k as any).syncState?.());
+					});
+
+
 				}   
 				else {
 					console.log("No keys to send..")

@@ -24,6 +24,12 @@ export class Key {
 	get visibilityChanged(){ return this.$visibilityChanged.asPublic() }
 	get onError(){ return this.$onError.asPublic() }
 
+	/**
+	 * Send the current state to the "other side" in case we hold some state...
+	 * This is meant to be used by the key when being run on the "app" side and **defined in the `keepInSync` method**
+	 */
+	protected syncState?:VoidFunction;
+
 	constructor( readonly config:KeyConfig, kid?:number )
 	{
 		this.kid = kid ?? ++keyId;  

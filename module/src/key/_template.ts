@@ -63,6 +63,16 @@ export class CLASSKey extends Key {
 				}
 			});
 
+			//
+			// this one is optional...
+			//
+			this.syncState = ()=>{ 
+				//
+				// let's say the button has state in the app, like you app sets some values and such...
+				// this is the place to send the state to the remote key so it is up to date...
+				// 
+			}
+
 			return ()=>{
 				superRemove();
 				removed=true;
