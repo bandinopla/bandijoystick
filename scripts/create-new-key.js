@@ -93,7 +93,7 @@ You are a smart dev, right?` })
 	newFile = file.replace("_template",className+"UI");
 	replaceInFile(`${file}-->${newFile}`, "PushKey", className );
 	replaceInFile(newFile, "createButton", `create${className}UI` ); 
-	log(chalk.green( 'Added UI Key class in ' + chalk.blue.underline.bold(file) ));
+	log(chalk.green( 'Added UI Key class in ' + chalk.blue.underline.bold(newFile) ));
 
 	//
 	// Add UI to factory
