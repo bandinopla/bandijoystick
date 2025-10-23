@@ -1,4 +1,4 @@
-[![npm version](https://img.shields.io/npm/v/package-name.svg)](https://www.npmjs.com/package/bandijoystick)
+[![npm version](https://img.shields.io/npm/v/bandijoystick.svg)](https://www.npmjs.com/package/bandijoystick)
 
 # ✨💻🐶📱✨  BandiJoystick.js
 **Turn a phone into a remote controller!**
