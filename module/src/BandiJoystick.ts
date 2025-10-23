@@ -36,6 +36,8 @@ export class Joystick extends Server {
 	private _keys?:Key[]; 
 
 	get connected(){ return this.$connected.asPublic(); }
+	get isConnected(){ return !!this.currentPeer; }
+
 	get disconnected(){ return this.$disconnected.asPublic(); } 
 	get keysChange(){ return this.$keys.asPublic(); } 
 
