@@ -55,7 +55,7 @@ const menu = [
 const StopWatchApp = lazy(()=>import("./apps/stopwatch/StopwatchApp"));
 const WebcamApp = lazy(()=>import("./apps/webcam/WebcamApp"));
 const RCCarApp = lazy(()=>import("./apps/rc-car/RCCarApp"));
-
+/*%NEW_DEMO_CLASS%*/
 //--------- end / example apps -------
 
 
@@ -113,7 +113,8 @@ function App() {
 		<Router>
 			<Route path={base+"apps/stopwatch"} component={StopWatchApp} /> 
 			<Route path={base+"apps/webcam"} component={WebcamApp} /> 
-			<Route path={base+"apps/rc-car"} component={RCCarApp} /> 
+			<Route path={base+"apps/rc-car"} component={RCCarApp} />
+			{/*%NEW_DEMO%*/}
 			<Route path={base+"*"} component={Website}/>   
 			<Route path={base} component={Website}/>   
 			

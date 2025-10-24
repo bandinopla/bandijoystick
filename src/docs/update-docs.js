@@ -32,6 +32,8 @@ const files = [
   {"file":"ImageDoc.md","slug":"image","label":"Image"},
   //%NEW-KEY%
   { file: "more_buttons.md", slug: "more-buttons", label: "+ More buttons" },
+  "Examples",
+  { file: "adding_examples.md", slug: "adding-examples", label: "Adding examples" },
   "Testing",
   { file: "automated_tests.md", slug: "automated-tests", label: "Automated tests" },
 ];

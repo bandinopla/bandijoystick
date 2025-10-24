@@ -3,11 +3,11 @@ import styles from "./Examples.module.css";
 
 type ExampleDef = {
 	title:string
-	thumbnail:string 
+	thumbnail?:string 
 	link:string
 	desc:string
 	source:string
-	by: { name:string, link:string }
+	by?: { name:string, link?:string }
 }
 
 /**
@@ -44,7 +44,8 @@ const examples :ExampleDef[] = [
 		desc:"Showcasing how you can use the phone as a joystick to control a game",
 		source:"https://github.com/bandinopla/bandijoystick/tree/main/src/apps/rc-car",
 		by: by.bandinopla
-	}
+	}, 
+	/*%NEW_EXAMPLE%*/
 ]
 
 //
@@ -67,7 +68,8 @@ export function Examples() {
 				<div style={{ position:"relative", height:80}}>
 					<h1>{selected.title}</h1>
 					<div className={styles.by} >
-							by <a href={selected.by.link} target={"_blank"}>{selected.by.name}</a></div>
+							by { selected.by? <a href={selected.by.link ?? "#"} target={"_blank"}>{selected.by.name}</a> : "???"}
+					</div>
 				</div>
 
 				<h4>{selected.desc}</h4>
@@ -79,11 +81,11 @@ export function Examples() {
 
 		<div className={"flex grid"}>
 			{
-				examples.map((itm, i)=><div key={i} onClick={()=>setSelected(itm)} className={"bsha "+styles.thumbnail} style={{ width:200, height:200, background:"#111", backgroundSize:"cover", backgroundImage:`url(${ import.meta.env.BASE_URL+'thumbnails/'+ itm.thumbnail})` }}>
+				examples.map((itm, i)=><div key={i} onClick={()=>setSelected(itm)} className={"bsha "+styles.thumbnail} style={{ width:200, height:200, background:"#111", backgroundSize:"cover", backgroundImage:`url(${ import.meta.env.BASE_URL+'thumbnails/'+ (itm.thumbnail??"not-set.webp")})` }}>
 					
 						{itm.title}
 						<div className={styles.by} >
-							by <a href={itm.by.link} target={"_blank"}>{itm.by.name}</a></div>
+							by <a href={itm.by?.link??"#"} target={"_blank"}>{itm.by?.name||"???"}</a></div>
 				</div>)
 			}
 		</div>
