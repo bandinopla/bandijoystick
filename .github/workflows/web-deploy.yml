@@ -2,7 +2,8 @@ name: Web Deploy
 on:
   push:
     paths-ignore:
-      - "**/*.md"
+      - "**/README.md"
+      - ".github/workflows/**"
     branches:
       - main
 jobs: 
