@@ -10,8 +10,22 @@ test('Image key', pingPongTester({
 			id:"foo",
 			radius:"100px",
 			backgroundSize:"10%",
-			src:"../public/logo.webp"
+			src:"../public/logo.webp",
+			onClicked: ()=>{
+				window.imageClicked = true;
+			}
 		});  
+
+		img.pressed.on( isPressed=> {
+			if( isPressed )
+			{
+				window.wasPressed = true;
+			}
+			else 
+			{
+				window.wasReleased = true;
+			}
+		})
 		
 		window.imgKey = img;
 
@@ -49,6 +63,27 @@ test('Image key', pingPongTester({
 			},  
  
 			check: what => expect(what).toBe("image")
+		},
+
+		//
+		// press image
+		//
+		{
+			phone: async()=>new Promise(resolve => {
+				window.imgKey.isPressed = true;
+				setTimeout(()=>{
+					window.imgKey.isPressed = false;
+					setTimeout( resolve, 200 )
+				}, 300)
+			})
+		},
+
+		//
+		// did the server detected the click?
+		//
+		{
+			server: ()=>window.wasPressed && window.wasReleased && window.imageClicked,
+			check: what => expect(what).toBe(true)
 		},
  
 		//

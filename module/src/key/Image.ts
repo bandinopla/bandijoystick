@@ -1,7 +1,7 @@
 import type { Room } from "trystero/firebase";
 import type { KeyConfig } from "../layout/KeysLayout";
 import { Signal } from "../utils/Signal";
-import { Key } from "./Key";
+import { PushKey, type PushKeyConfig } from "./PushKey";
 
 
 type CustomImageConfig = {
@@ -12,12 +12,12 @@ type CustomImageConfig = {
 	 * @see https://developer.mozilla.org/en-US/docs/Web/CSS/background-size
 	 */
 	backgroundSize?:string;
-}
+} & PushKeyConfig;
 
 const $cache:Map<string, Promise<Blob>> = new Map(); 
  
 
-export class Image extends Key { 
+export class Image extends PushKey { 
 	protected $image= new Signal<Blob|undefined>(); 
 	protected $bgSizeChange = new Signal<string>(); 
 	get image(){ return this.$image.asPublic() }
@@ -51,7 +51,9 @@ export class Image extends Key {
 	constructor( config:Omit<KeyConfig, "type"> & CustomImageConfig, kid?:number )
 	{
 		super({
-			...config, type:"image"
+			...config,
+			//@ts-ignore
+			type:"image"
 		}, kid); 
 
 		this._backgroundSize = config.backgroundSize ?? "cover";

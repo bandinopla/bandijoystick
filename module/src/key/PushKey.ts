@@ -4,7 +4,7 @@ import { Signal } from "../utils/Signal";
 import { Key } from "./Key";
 
 
-type quickListeners = {
+export type PushKeyConfig = {
 	onClicked?:VoidFunction
 }
 
@@ -13,10 +13,11 @@ export class PushKey extends Key {
 	protected $clicked= new Signal<void>();
 	protected _isPressed = false; 
 
-	constructor( config:Omit<KeyConfig, "type"> & quickListeners, kid?:number )
+	constructor( config:Omit<KeyConfig, "type"> & PushKeyConfig, kid?:number )
 	{
 		super({
-			...config, type:"button"
+			type:"button",
+			...config
 		}, kid);
  
 		if( config.onClicked )

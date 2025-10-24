@@ -1,8 +1,9 @@
 # Image
 Shows an image on the phone's side. It will be set as the background of the containing [div element](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDivElement) of this UI. It was designed to let the app be the source of truth, and the remote key just listens to the app.
 
-
 ## Usage
+Image extends `PushKey` so it inherit all it's events.
+
 ```js
 const coolImage = new BANDI.Image({
 	id:"avatar",
@@ -12,7 +13,12 @@ const coolImage = new BANDI.Image({
 
 	// youc an set the src here 
 	src:"./cool-cat-30x30.jpg",
-	backgroundSize:"cover"
+	backgroundSize:"cover",
+
+	// optional
+	onClicked: () => {
+		console.log("The image was clicked!")
+	}
 });
 
 // you can set these values at any time... and they will be synced with the remote key
@@ -33,6 +39,7 @@ coolImage.src = undefined;
 
 ## Events
  
+### Blob Set
 ```js
 //
 // To get the Blob loaded or un-set use this signal...
@@ -40,7 +47,11 @@ coolImage.src = undefined;
 coolImage.image.on( (blob:Blob|undefined) => {
 	
 });
+ 
+```
 
+### Background size changed
+```js  
 //
 // backgroundSizeChange set | unset
 //
@@ -48,3 +59,6 @@ coolImage.backgroundSizeChange.on( newSize => {
 	
 })
 ```
+
+### + Button events
+Since it extends `BANDI.PushKey`, it has the same events.
