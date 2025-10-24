@@ -43,7 +43,7 @@ input.domElement().then( el => document.body.appendChild(el) );
 				<pre><code className={"hljs"} dangerouslySetInnerHTML={{ __html:bash }}></code></pre>
 				Then, in your app:
 				<pre><code className={"hljs"} dangerouslySetInnerHTML={{ __html:js }}></code></pre>
-				<h4>The connection is P2P meaning there's no server in between*</h4>
+				Now <b>scan the QR code</b> shown in your app with your phone. 
 				That's it!
 			</div>
 		</div>
