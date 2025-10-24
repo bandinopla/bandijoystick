@@ -9,6 +9,28 @@ No apps. No installations. Just scan & play!
 
 **BandiJoystick.js** is a tiny wrapper library around [Trystero](https://github.com/dmotz/trystero) to easily allow any phone to be used as a joystick or remote control for your applications / games.
 
+## Usage
+```js
+import * as BANDI from 'bandijoystick';
+
+const input = new BANDI.Joystick( "Player 1" );
+
+// add some buttons!
+input.setKeys( [
+	new BANDI.PushKey({
+		id:"myCoolBtn",
+		radius:"200px",
+		onClicked: ()=>console.log("YEEEHH HAAAAAA!")
+	})
+]);
+
+// listen...
+input.connected.on(()=>console.log("Player 1 has joined da game, ya'll!!!"));
+
+//add it to the page
+input.domElement().then( el => document.body.appendChild(el) ); 
+```
+
 ## Motivation
 Sometimes I would like to be able to control an app with the phone acting as a remote control, to be able to be on the couch playing a game I made or an app, etc... So that's how the idea came out. It should be trivial ( *I said to myself* ) to use the phone to control things... why not just scan a QR code and that's it? No apps, no weird setup. That's what this aims to be.
 
