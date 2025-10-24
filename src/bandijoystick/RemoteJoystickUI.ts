@@ -15,7 +15,7 @@ import { isMobileByUserAgent } from "../utils/isMobile";
 document.addEventListener('contextmenu', e => e.preventDefault());
 
 function startWebcamFeed(callback: (url?: string, error?: string) => void) {
-	navigator.mediaDevices.getUserMedia({ video: true }).then(stream => {
+	navigator.mediaDevices.getUserMedia({ video: { facingMode:"environment" } }).then(stream => {
 		const video = document.createElement('video');
 		video.srcObject = stream;
 		video.autoplay = true;
