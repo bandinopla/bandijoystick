@@ -1,6 +1,8 @@
-name: Deploy to Firebase IF tests pass
+name: Web Deploy
 on:
   push:
+    paths-ignore:
+      - "**/*.md"
     branches:
       - main
 jobs: 
