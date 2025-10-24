@@ -2,11 +2,12 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { defineConfig } from 'vite'
 import dts from 'vite-plugin-dts'
+import version from '../scripts/module_version';
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
-  plugins: [dts({ insertTypesEntry: true })],
+  plugins: [version(), dts({ insertTypesEntry: true })],
   publicDir: false, 
 
   build: {

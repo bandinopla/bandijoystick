@@ -9,6 +9,8 @@ let joystickId = 0;
 
 export class Joystick extends Server {
 
+	get version(){ return import.meta.env.PACKAGE_VERSION; }
+	
 	protected currentPeer?:string;
 	readonly id = ++joystickId;
 
