@@ -8,7 +8,11 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
   plugins: [version(), dts({ insertTypesEntry: true })],
-  publicDir: false, 
+  publicDir: false,
+
+  esbuild: {
+	drop: ['console', 'debugger'],
+  },
 
   build: {
 
