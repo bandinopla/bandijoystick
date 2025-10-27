@@ -1,7 +1,7 @@
 import type { Room } from "trystero";
 import { Signal } from "../utils/Signal"; 
 import type { KeyConfig } from "../layout/KeysLayout";
-import { Key } from "./Key";
+import { CLEAR, Key } from "./Key";
  
 
 type GamepadSlot = {
@@ -527,13 +527,11 @@ export class GamepadRelay extends Key {
 		//
 		else // listen for state change
 		{
-			let removed = false;
-
 			//
 			// gamepad connected onthe other side?
 			//
-			onConnectionStatus(( isConnected, peer)=>{
-				if( removed ) return;
+			onConnectionStatus(( isConnected, peer)=>{ 
+
 				if( peer!=getPeerId() ) return; 
  
 				this.connected = isConnected;
@@ -543,7 +541,7 @@ export class GamepadRelay extends Key {
 			// the mapping changed or was set
 			//
 			onMapping((newMapping, peer)=>{
-				if( removed ) return;
+				
 				if( peer!=getPeerId() ) return; 
 				this.mapping = newMapping==""? undefined : newMapping;
 			});
@@ -552,7 +550,7 @@ export class GamepadRelay extends Key {
 			// the phone is sending us the buttons states
 			//
 			onButtonsState((snap, peer)=>{
-				if( removed ) return;
+				 
 				if( peer!=getPeerId() ) return; 
 
 
@@ -581,7 +579,7 @@ export class GamepadRelay extends Key {
 			// sending us the axes
 			//
 			onAxesState(( newAxes, peer)=>{
-				if( removed ) return;
+				 
 				if( peer!=getPeerId() ) return;
 
 				this._lastKnownAxes = newAxes;
@@ -590,7 +588,10 @@ export class GamepadRelay extends Key {
 
 			return ()=>{
 				superCleanup();
-				removed = true;
+				onConnectionStatus(CLEAR);
+				onMapping(CLEAR);
+				onButtonsState(CLEAR);
+				onAxesState(CLEAR);
 			}
 		}
 	}

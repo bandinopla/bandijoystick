@@ -1,6 +1,6 @@
 import type { Room } from "trystero/firebase";
 import { Signal } from "../utils/Signal"; 
-import { Key } from "./Key";
+import { CLEAR, Key } from "./Key";
 import type { KeyConfig } from "../layout/KeysLayout";
 
 
@@ -72,11 +72,9 @@ export class DirKey extends Key {
 			}
 		}
 		else 
-		{
-			let removed = false;
+		{ 
 
-			onState( (newDir, peer)=>{
-				if( removed ) return;
+			onState( (newDir, peer)=>{ 
 				if( peer==getPeerId() )
 				{
 					this.x = newDir[0];
@@ -86,7 +84,7 @@ export class DirKey extends Key {
 
 			return ()=>{
 				superRemove();
-				removed=true;
+				onState(CLEAR);
 			}
 		} 
 		

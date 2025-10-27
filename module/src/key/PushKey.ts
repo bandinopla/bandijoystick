@@ -1,7 +1,7 @@
 import type { Room } from "trystero/firebase";
 import type { KeyConfig } from "../layout/KeysLayout";
 import { Signal } from "../utils/Signal";
-import { Key } from "./Key";
+import { CLEAR, Key } from "./Key";
 
 
 export type PushKeyConfig = {
@@ -79,11 +79,10 @@ export class PushKey extends Key {
 			};
 		}
 		else 
-		{
-			let removed = false;
+		{ 
 
 			onPressedChange( (isDown, other)=>{
-				if( removed ) return;
+				 
 				if( other==getPeerId() )
 				{
 					console.log("peer send us on pressed: ", isDown)
@@ -93,7 +92,7 @@ export class PushKey extends Key {
 
 			return ()=>{
 				superRemove();
-				removed=true;
+				onPressedChange(CLEAR);
 			}
 		} 
 		

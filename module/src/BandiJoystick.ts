@@ -274,7 +274,7 @@ export class Joystick extends Server {
 
 				if( this._keys )
 				{
-					console.log("Sending the keys...")
+					console.log("Sending the keys...", this._keys.length)
 					sendKeys( this._keys.map(k=>({ ...k.config, kid:k.kid, visible:k.visible })), this.currentPeer ).then(()=>{
 
 						//

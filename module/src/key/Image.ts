@@ -2,6 +2,7 @@ import type { Room } from "trystero/firebase";
 import type { KeyConfig } from "../layout/KeysLayout";
 import { Signal } from "../utils/Signal";
 import { PushKey, type PushKeyConfig } from "./PushKey";
+import { CLEAR } from "./Key";
 
 
 type CustomImageConfig = {
@@ -124,17 +125,15 @@ export class Image extends PushKey {
 
 		if( isRemote ) // phone
 		{   
-			let removed = false;
-
 			onBgSize((newSize, peer)=>{
-				if(!removed && peer==getPeerId())
+				if( peer==getPeerId())
 				{
 					this.backgroundSize = newSize;
 				}
 			})
 
 			onSrc( (newSrc, peer)=>{
-				if( removed ) return;
+				 
 				if( peer==getPeerId() )
 				{ 
 					console.log("Got new src = "+JSON.stringify(newSrc))
@@ -143,7 +142,7 @@ export class Image extends PushKey {
 			});
 
 			onBlob((newBlob, peer)=>{
-				if( removed ) return;
+				 
 				if( peer==getPeerId() )
 				{
 					console.log("Got blob", !!newBlob)
@@ -153,7 +152,7 @@ export class Image extends PushKey {
 			});
 
 			onClearBlob((_, peer)=>{
-				if( removed ) return;
+				 
 				if( peer==getPeerId() )
 				{
 					this.clearBlob();
@@ -162,7 +161,10 @@ export class Image extends PushKey {
 
 			return ()=>{
 				superRemove(); 
-				removed = true;
+				onBgSize(CLEAR);
+				onSrc(CLEAR);
+				onBlob(CLEAR);
+				onClearBlob(CLEAR);
 			};
 		}
 		else 

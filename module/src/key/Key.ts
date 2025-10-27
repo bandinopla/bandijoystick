@@ -2,8 +2,15 @@
 import type { DataPayload, Room } from "trystero/firebase";
 import type { KeyConfig } from "../layout/KeysLayout";
 import { Signal } from "../utils/Signal";
+import type { ActionSender, JsonValue } from "trystero";
 
 let keyId = 0;
+
+/**
+ * Pass this as listener value to indicate you want to clear the listener.
+ * Internally the listener will be set to `()=>{}`
+ */
+export const CLEAR = Symbol('CLEAR');
  
 export class Key {
 	readonly kid ; 
@@ -53,17 +60,18 @@ export class Key {
 
 		if( isRemote )
 		{
-			let removed = false;
 
 			onVisibility( (shouldBeVisible, other)=>{
-				if( removed ) return;
+				
 				if( other==getPeerId() )
 				{
 					this.visible = shouldBeVisible;
 				}
 			});
 
-			return ()=>{removed=true} 
+			return ()=>{ 
+				onVisibility(CLEAR);
+			} 
 
 		}
 		else 
@@ -84,8 +92,29 @@ export class Key {
  
 	}
 
-	protected makeRoomAction<T extends DataPayload>(room:Room, prefix:string ) {
-		return room.makeAction<T>('k'+this.kid+prefix)
+	/**
+	 * 
+	 * @param room the room in which to create the action
+	 * @param prefix short ID to identify this action
+	 * @returns a tuple [ set, onValue( listner | undefined ) ] and if you pass `undefined` to onValue, then you unregister from events.
+	 */
+	protected makeRoomAction<T extends DataPayload>(room:Room, prefix:string ) : [ActionSender<T>, (callback:((data: T, peerId: string, metadata?: JsonValue) => void)|typeof CLEAR)=>void] {
+		const [setter, getter] = room.makeAction<T>('k'+this.kid+prefix);
+
+		return [
+			setter,
+			( callback )=>{
+				if( callback==CLEAR )
+				{
+					console.log("Removing key action", 'k'+this.kid+prefix)
+					getter(()=>{});
+				}
+				else 
+				{
+					getter(callback);
+				}
+			}
+		]
 	}
 
 	dispose() {

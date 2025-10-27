@@ -1,7 +1,7 @@
 import type { Room } from "trystero";
 import type { KeyConfig } from "../layout/KeysLayout";
 import { Signal } from "../utils/Signal";
-import { Key } from "./Key";
+import { CLEAR, Key } from "./Key";
 
 // // get a local audio stream from the microphone
 // const selfStream = await navigator.mediaDevices.getUserMedia({
@@ -80,12 +80,11 @@ export class CameraStream extends Key {
 
 	override keepInSync(room: Room, isRemote: boolean, getPeerId: () => string | undefined): () => void
 	{ 
-		let unsynced = false;
 		const superSync = super.keepInSync(room, isRemote, getPeerId);
 		const [stopStream, onShouldStopTheStream ] = this.makeRoomAction<null>(room, "stop");
 
 		onShouldStopTheStream((_, peer)=>{
-			if( unsynced ) return;
+			 
 			if( peer==getPeerId() )
 			{
 				//console.log("onShouldStopTheStream...")
@@ -117,7 +116,7 @@ export class CameraStream extends Key {
 		}
 
 		room.onPeerStream( (stream, peer)=>{
-			if( unsynced ) return;
+			 
 			if( peer==getPeerId() )
 			{
 				
@@ -137,8 +136,9 @@ export class CameraStream extends Key {
 
 		return ()=>{
 
+			room.onPeerStream(()=>{});
+			onShouldStopTheStream(CLEAR);
 			superSync();
-			unsynced = true;
 			this.stopPeersToo = undefined;
 			this.onStream.off(onStreamSet);
 			this.$streamRemoved.off(onStreamRemoved);  

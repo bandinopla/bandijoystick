@@ -1,7 +1,7 @@
 import type { Room } from "trystero/firebase";
 import type { KeyConfig } from "../layout/KeysLayout";
 import { Signal } from "../utils/Signal";
-import { Key } from "./Key";
+import { CLEAR, Key } from "./Key";
 
 
 type CustomDeviceMotionRelayConfig = {
@@ -114,11 +114,10 @@ export class DeviceMotionRelay extends Key {
 			};
 		}
 		else 
-		{
-			let removed = false;
+		{ 
 
 			onMotion( ( motion, other)=>{
-				if( removed ) return;
+				 
 				if( other==getPeerId() )
 				{
 					this.deviceMotionListener( this.unpackDeviceMotion(motion) );
@@ -127,7 +126,7 @@ export class DeviceMotionRelay extends Key {
 
 			return ()=>{
 				superRemove();
-				removed=true;
+				onMotion(CLEAR);
 			}
 		} 
 		

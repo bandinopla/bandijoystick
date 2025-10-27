@@ -1,7 +1,7 @@
 import type { Room } from "trystero/firebase";
 import type { KeyConfig } from "../layout/KeysLayout";
 import { Signal } from "../utils/Signal";
-import { Key } from "./Key";
+import { CLEAR, Key } from "./Key";
 
 
 type CustomCLASSKeyConfig = {
@@ -52,11 +52,9 @@ export class CLASSKey extends Key {
 			};
 		}
 		else 
-		{
-			let removed = false;
+		{ 
 
-			onClicked( (_, other)=>{
-				if( removed ) return;
+			onClicked( (_, other)=>{ 
 				if( other==getPeerId() )
 				{
 					this.click();
@@ -75,7 +73,7 @@ export class CLASSKey extends Key {
 
 			return ()=>{
 				superRemove();
-				removed=true;
+				onClicked(CLEAR);
 			}
 		} 
 		
