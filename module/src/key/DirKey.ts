@@ -1,6 +1,6 @@
 import type { Room } from "trystero/firebase";
 import { Signal } from "../utils/Signal"; 
-import { CLEAR, Key } from "./Key";
+import { CLEAR, keepInSync, Key } from "./Key";
 import type { KeyConfig } from "../layout/KeysLayout";
 
 
@@ -48,9 +48,9 @@ export class DirKey extends Key {
 	}
 
 	//-----------------------------------------
-	override keepInSync(room: Room, isRemote: boolean, getPeerId: () => string | undefined): () => void {
+	override [keepInSync](room: Room, isRemote: boolean, getPeerId: () => string | undefined): () => void {
 
-		const superRemove = super.keepInSync(room, isRemote, getPeerId);
+		const superRemove = super[keepInSync](room, isRemote, getPeerId);
 
 		const [sendState, onState] = this.makeRoomAction<Dir>(room, 'd');  
 

@@ -1,7 +1,7 @@
 import type { Room } from "trystero/firebase";
 import type { KeyConfig } from "../layout/KeysLayout";
 import { Signal } from "../utils/Signal";
-import { CLEAR, Key } from "./Key";
+import { CLEAR, keepInSync, Key } from "./Key";
 
 
 type CustomDeviceMotionRelayConfig = {
@@ -84,9 +84,9 @@ export class DeviceMotionRelay extends Key {
 	}
 
 	//---------------------
-	override keepInSync(room: Room, isRemote: boolean, getPeerId: () => string | undefined): () => void {
+	override [keepInSync](room: Room, isRemote: boolean, getPeerId: () => string | undefined): () => void {
 
-		const superRemove = super.keepInSync(room, isRemote, getPeerId);
+		const superRemove = super[keepInSync](room, isRemote, getPeerId);
 		const [ sendMotion, onMotion ] = this.makeRoomAction<SerializedDeviceMotion>(room, 'motion'); 
 	 
 

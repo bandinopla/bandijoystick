@@ -2,7 +2,7 @@ import type { Room } from "trystero/firebase";
 import type { KeyConfig } from "../layout/KeysLayout";
 import { Signal } from "../utils/Signal";
 import { PushKey, type PushKeyConfig } from "./PushKey";
-import { CLEAR } from "./Key";
+import { CLEAR, keepInSync } from "./Key";
 
 
 type CustomImageConfig = {
@@ -113,9 +113,9 @@ export class Image extends PushKey {
  
 
 	//---------------------
-	override keepInSync(room: Room, isRemote: boolean, getPeerId: () => string | undefined): () => void {
+	override [keepInSync](room: Room, isRemote: boolean, getPeerId: () => string | undefined): () => void {
 
-		const superRemove = super.keepInSync(room, isRemote, getPeerId);
+		const superRemove = super[keepInSync](room, isRemote, getPeerId);
 
 		const [ sendSrc, onSrc ] = this.makeRoomAction<string>(room, 'src'); 
 		const [ sendBlob, onBlob ] = this.makeRoomAction<Blob>(room, 'img'); 

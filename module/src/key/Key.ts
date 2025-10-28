@@ -6,6 +6,8 @@ import type { ActionSender, JsonValue } from "trystero";
 
 let keyId = 0;
 
+export const keepInSync = Symbol("keepInSync");
+
 /**
  * Pass this as listener value to indicate you want to clear the listener.
  * Internally the listener will be set to `()=>{}`
@@ -54,7 +56,7 @@ export class Key {
 	 * @param getPeerId get the peerId from which we are recieving or sending data
 	 * @returns 
 	 */
-	keepInSync( room:Room, isRemote:boolean, getPeerId:()=>string|undefined ) {
+	[keepInSync]( room:Room, isRemote:boolean, getPeerId:()=>string|undefined ) {
 
 		const [ setVisibility, onVisibility ] = this.makeRoomAction<boolean>(room, 'v'); 
 

@@ -1,7 +1,7 @@
 import type { Room } from "trystero";
 import { Signal } from "../utils/Signal"; 
 import type { KeyConfig } from "../layout/KeysLayout";
-import { CLEAR, Key } from "./Key";
+import { CLEAR, keepInSync, Key } from "./Key";
  
 
 type GamepadSlot = {
@@ -477,8 +477,8 @@ export class GamepadRelay extends Key {
 		}
 	}
 
-	override keepInSync(room: Room, isRemote: boolean, getPeerId: () => string | undefined): () => void {
-		const superCleanup = super.keepInSync(room, isRemote, getPeerId);
+	override [keepInSync](room: Room, isRemote: boolean, getPeerId: () => string | undefined): () => void {
+		const superCleanup = super[keepInSync](room, isRemote, getPeerId);
 
 		const [sendButtonsState, onButtonsState] = this.makeRoomAction<number[]>(room, "btns");
 		const [sendAxesState, onAxesState] = this.makeRoomAction<number[]>(room, "axes");

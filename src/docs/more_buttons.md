@@ -11,16 +11,18 @@ pnpm run create:key
 
 
 ## Concept
-A button is an objects that the developer of an app uses to detect when the user clicks on a button in the virtual joystick. It manages the syncronicity with the "other self" by overriding and implementing the `keepInSync` method inherited from `BANDI.Key`
+A button is an objects that the developer of an app uses to detect when the user clicks on a button in the virtual joystick. It manages the syncronicity with the "other self" by overriding and implementing the `[keepInSync]` method inherited from `BANDI.Key`
 
 ```text
 [Phone's Key] <====> [App's key]
 ```
  
 
-# The `keepInSync` Method
+# The `[keepInSync]` Method
 This function is called when the key is instantiated. It will act diferently depending on if the key is remote ( *running on the phone* ) or on the app ( *the pc / tv* )
 The goal here is to mirror or mimic the changes of the key. Usually, the phone will be the **source of truth** meaning: if the user clicks a button, logically, you have to mimic the push of the button in the application.
+
+**Why as a symbol?** Shared internal method shouldn’t appear as public API. Symbol key removes autocomplete exposure and discourages external use while preserving necessary cross-object calls.
  
  
 

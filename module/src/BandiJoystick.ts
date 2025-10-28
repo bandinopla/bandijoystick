@@ -1,7 +1,7 @@
 import { Signal } from "./utils/Signal";  
 import { Server } from "./Server";
 import type { RemoteKeyConfig } from "./layout/KeysLayout";
-import { Key } from "./key/Key";
+import { keepInSync, Key } from "./key/Key";
 import { newKeyFor } from "./key/factory";
 
 let joystickId = 0; 
@@ -116,7 +116,7 @@ export class Joystick extends Server {
 		this._keys.forEach( key => {
 			if( !this.stopKeySync.has(key) )
 			{
-				this.stopKeySync.set( key, key.keepInSync( this.api.room, this.isRemote, ()=>this.otherPeerId ) );
+				this.stopKeySync.set( key, key[keepInSync]( this.api.room, this.isRemote, ()=>this.otherPeerId ) );
 			}
 		});
 
