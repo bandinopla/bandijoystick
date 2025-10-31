@@ -14,6 +14,7 @@
     "url": "https://github.com/bandinopla/bandijoystick/issues"
   },
   "scripts": {
+	"preinstall": "npx only-allow pnpm",
     "dev": "vite",
     "build:module": "pnpm --filter bandijoystick build",
     "build": "vite build",

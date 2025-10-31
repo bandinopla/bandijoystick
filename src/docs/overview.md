@@ -74,3 +74,6 @@ slot.domElement().then( el => {
 Scan the QR code with your phone!
 
 **That's it!** You can now control your app using the phone as a joystick!
+
+# Contributing
+Check [CONTRIBUTING GUIDE](https://github.com/bandinopla/bandijoystick/blob/main/CONTRIBUTING.md) to know how the project is structured.

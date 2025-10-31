@@ -1,7 +1,7 @@
 # Adding new button types
 This library is young and still growing! More key types will be added in the future either by me and/or by awesome developers that decide to collab and expand it by doing pull requests.
 
-If you want to add more buttons, drop a [pull request](https://github.com/bandinopla/bandijoystick/pulls) and remember to work on a new branch.
+If you want to add more buttons, drop a [pull request](https://github.com/bandinopla/bandijoystick/pulls) and remember to work on a new branch. Check [CONTRIBUTING GUIDE](https://github.com/bandinopla/bandijoystick/blob/main/CONTRIBUTING.md) to know how the project is structured.
 
 ## Create new
 Run the key creation widget to create the required files and hook it up in the system:
