@@ -51,7 +51,7 @@ BANDI.config({
 	//
 	// you only need to override this is you are going to develop your own phone controller handler.
 	//
-	remoteControlUrl:"..." // url where the phone will be redirected when the QR code is scanned. Default value is: https://bandinopla.github.io/bandijoystick/
+	remoteControlUrl:"..." // url where the phone will be redirected when the QR code is scanned. Default value is: https://bandijoystickjs.web.app/ 
 	
 	//
 	// by default a trystero/firebase room is used
